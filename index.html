@@ -28,19 +28,39 @@
 *{box-sizing:border-box}
 body{margin:0; font-family:Inter,system-ui,Arial,sans-serif; color:var(--text); background:#0c1512;}
 
-header{text-align:center; padding:14px 16px 0}
+header{
+  text-align:center;
+  padding:16px 16px 0;
+}
 .brand{
   font-family:'Playfair Display',serif; font-weight:700;
-  font-size:clamp(26px,3.5vw,40px);
+  font-size:clamp(28px,4vw,44px);
   text-shadow:0 2px 16px rgba(0,0,0,.45)
 }
-.subtitle{opacity:.9; text-shadow:0 2px 12px rgba(0,0,0,.45)}
+
+/* ✅ groter en mooier */
+.subtitle{
+  font-size:clamp(18px,2.6vw,30px);
+  font-weight:600;
+  margin-top:6px;
+  text-shadow:0 2px 12px rgba(0,0,0,.45)
+}
+
+/* ✅ aparte data */
+.dates{
+  font-size:clamp(16px,2vw,26px);
+  font-weight:600;
+  opacity:.85;
+  margin-top:4px;
+  letter-spacing:.04em;
+  text-shadow:0 2px 12px rgba(0,0,0,.45)
+}
 
 main{
   min-height:100vh;
   display:grid;
   place-items:start center;
-  padding-top:40px;
+  padding-top:30px;
   padding-left:14px;
   padding-right:14px;
   position:relative;
@@ -49,13 +69,14 @@ main{
 
 main::before{
   content:""; position:absolute; inset:0;
-  background: var(--bgimage) no-repeat center 40% / cover;
+  background: var(--bgimage) no-repeat center 32% / cover;
   filter:saturate(1.05) contrast(1.05);
 }
+
 main::after{
-  content:""; position:absolute; inset:0; pointer-events:none;
+  content:""; position:absolute; inset:0;
   background:
-    linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.10) 20%, rgba(0,0,0,.30) 55%, rgba(0,0,0,.60) 100%);
+    linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.10) 20%, rgba(0,0,0,.30) 60%, rgba(0,0,0,.65) 100%);
 }
 
 .card{
@@ -81,8 +102,8 @@ main::after{
 }
 
 .flight{
-  display:flex; flex-wrap:wrap; gap:10px;
-  justify-content:center; color:var(--muted); font-weight:600;
+  display:flex; gap:10px; justify-content:center;
+  color:var(--muted); font-weight:600;
 }
 
 .badge{
@@ -93,8 +114,10 @@ main::after{
 }
 
 .countdown{
-  display:grid; grid-template-columns:repeat(4, minmax(68px,1fr));
-  gap:8px; margin:12px 0
+  display:grid;
+  grid-template-columns:repeat(4, minmax(68px,1fr));
+  gap:8px;
+  margin:12px 0
 }
 .tile{
   background:rgba(255,255,255,.06);
@@ -112,7 +135,11 @@ main::after{
   color:var(--muted)
 }
 
-.cta{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:6px}
+.cta{
+  display:flex; gap:8px;
+  justify-content:center;
+  margin-top:6px
+}
 .btn{
   padding:10px 12px; border-radius:12px; font-weight:700;
   text-decoration:none; cursor:pointer;
@@ -121,13 +148,17 @@ main::after{
 .btn.primary{background:var(--gold); color:#19231f}
 .btn.ghost{background:transparent; border:1px solid rgba(255,255,255,.22); color:#fff}
 
-footer{text-align:center; padding:14px; color:var(--muted); font-size:14px}
+footer{
+  text-align:center; padding:14px;
+  color:var(--muted); font-size:12px
+}
 
+/* ✅ iPhone fix: foto hoger + card kleiner */
 @media(max-width:600px){
-  main{padding-top:6px!important}
-  .card{width:86%; padding:8px 6px}
+  main{padding-top:0!important}
+  .card{width:84%; padding:8px 6px}
   .countdown{grid-template-columns:repeat(2,1fr)}
-  main::before{background-position:center 10%!important;}
+  main::before{background-position:center 6%!important;}
 }
 </style>
 </head>
@@ -135,14 +166,9 @@ footer{text-align:center; padding:14px; color:var(--muted); font-size:14px}
 <body>
 
 <header>
-  <div class="brand">Fifty in Style — Gleneagles, Scotland</div>
-  <div class="subtitle">
-  Officieel aftellen naar vertrek
-</div>
-<div class="dates">
-  15–19 april 2026
-</div>
-
+  <div class="brand">Fifty in Style — Gleneagles</div>
+  <div class="subtitle">Officieel aftellen naar vertrek</div>
+  <div class="dates">15–19 april 2026</div>
 </header>
 
 <main>
@@ -153,10 +179,10 @@ footer{text-align:center; padding:14px; color:var(--muted); font-size:14px}
       <button class="tab" id="tab-ret" aria-selected="false">Terugreis</button>
     </div>
 
-    <!-- Heen -->
+    <!-- HEEN -->
     <div id="panel-out">
       <div class="flight">
-        <span class="badge">✈️ SN2063</span> <span>15 apr 2026 • 11:10</span>
+        <span class="badge">✈️ SN2063</span> <span>15 apr 11:10</span>
       </div>
 
       <div class="countdown">
@@ -170,17 +196,16 @@ footer{text-align:center; padding:14px; color:var(--muted); font-size:14px}
         <button class="btn primary" id="addCalOut">📅 Voeg heenreis toe</button>
       </div>
 
-      <!-- Programma -->
       <div class="cta">
         <a class="btn" href="programma.html">📔 Programma per dag</a>
         <a class="btn ghost" href="programma.pdf" target="_blank">📄 PDF</a>
       </div>
     </div>
 
-    <!-- Terug -->
+    <!-- TERUG -->
     <div id="panel-ret" hidden>
       <div class="flight">
-        <span class="badge">✈️ SN2064</span> <span>19 apr 2026 • 12:50</span>
+        <span class="badge">✈️ SN2064</span> <span>19 apr 12:50</span>
       </div>
 
       <div class="countdown">
@@ -194,7 +219,6 @@ footer{text-align:center; padding:14px; color:var(--muted); font-size:14px}
         <button class="btn primary" id="addCalRet">📅 Voeg terugreis toe</button>
       </div>
 
-      <!-- Programma -->
       <div class="cta">
         <a class="btn" href="programma.html">📔 Programma per dag</a>
         <a class="btn ghost" href="programma.pdf" target="_blank">📄 PDF</a>
@@ -204,7 +228,7 @@ footer{text-align:center; padding:14px; color:var(--muted); font-size:14px}
   </section>
 </main>
 
-<footer>© Fifty in Style Olivier Bouckenooghe — Gleneagles, Scotland</footer>
+<footer>© Fifty in Style — Gleneagles, Scotland</footer>
 
 <script>
 const targetOut=new Date("2026-04-15T11:10:00+02:00");
@@ -222,6 +246,7 @@ function tick(t,e){
   e.s.textContent=pad(s%60);
 }
 setInterval(()=>{tick(targetOut,el1);tick(targetRet,el2)},1000);
+tick(targetOut,el1);tick(targetRet,el2);
 
 document.getElementById('tab-out').onclick=()=>select(true);
 document.getElementById('tab-ret').onclick=()=>select(false);
@@ -232,22 +257,25 @@ function select(o){
   document.getElementById('panel-ret').hidden=o;
 }
 
+addCalOut.onclick=()=>makeICS("Vertrek SN2063",targetOut);
+addCalRet.onclick=()=>makeICS("Terug SN2064",targetRet);
 function makeICS(sum,start){
   const end=new Date(start.getTime()+2*3600*1000);
-  const f=v=>String(v).padStart(2,'0');
-  const toICS=d=>d.getUTCFullYear()+f(d.getUTCMonth()+1)+f(d.getUTCDate())+
-               "T"+f(d.getUTCHours())+f(d.getUTCMinutes())+f(d.getUTCSeconds())+"Z";
+  const p=n=>String(n).padStart(2,'0');
   const ics="BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nUID:"+Date.now()+
-            "@fifty\nDTSTAMP:"+toICS(new Date())+"\nDTSTART:"+toICS(start)+
+            "@fs\nDTSTAMP:"+toICS(new Date())+"\nDTSTART:"+toICS(start)+
             "\nDTEND:"+toICS(end)+"\nSUMMARY:"+sum+"\nEND:VEVENT\nEND:VCALENDAR";
   const a=document.createElement('a');
   a.href=URL.createObjectURL(new Blob([ics],{type:"text/calendar"}));
   a.download=sum+".ics";a.click();
 }
-addCalOut.onclick=()=>makeICS("Vertrek SN2063",targetOut);
-addCalRet.onclick=()=>makeICS("Terug SN2064",targetRet);
+function toICS(d){
+  const p=n=>String(n).padStart(2,'0');
+  return d.getUTCFullYear()+p(d.getUTCMonth()+1)+p(d.getUTCDate())+
+         "T"+p(d.getUTCHours())+p(d.getUTCMinutes())+p(d.getUTCSeconds())+"Z";
+}
 
-// Auto-switch naar terugreis na vertrek
+// ✅ Auto-switch na vertrek
 if(new Date()>targetOut)document.getElementById('tab-ret').click();
 </script>
 
