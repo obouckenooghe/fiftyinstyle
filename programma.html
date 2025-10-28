@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Fifty in Style – Programma per dag</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#d6b264; --text:#f3f3f3; --muted:#c9d2cc; --ink:#0e1512;
+}
+*{box-sizing:border-box}
+body{margin:0; font-family:Inter,system-ui,Arial,sans-serif; color:var(--text); background:#0c1512;}
+header{padding:28px 16px 10px; text-align:center}
+h1{font-family:'Playfair Display',serif; margin:0; font-size:clamp(28px,4vw,44px)}
+.sub{opacity:.85}
+main{max-width:980px; margin:24px auto 60px; padding:0 16px}
+.day{
+  margin:16px 0; padding:18px; border-radius:18px;
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 12px 40px rgba(0,0,0,.35);
+}
+.day h2{
+  display:flex; align-items:center; gap:10px; margin:0 0 6px 0;
+  font-family:'Playfair Display',serif; font-size:clamp(20px,3vw,28px)
+}
+.badge{background:rgba(214,178,100,.16); color:var(--gold); border:1px solid rgba(214,178,100,.45);
+  padding:6px 10px; border-radius:999px; font-weight:700; font-size:14px}
+.list{margin:10px 0 0 0; padding:0 0 0 18px}
+.list li{margin:8px 0}
+.kicker{color:var(--muted); margin:2px 0 10px}
+.grid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.btns{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:18px 0 0}
+.btn{
+  appearance:none; border:none; cursor:pointer; padding:12px 16px; border-radius:12px; font-weight:700;
+  background:var(--gold); color:#19231f; text-decoration:none; display:inline-block
+}
+.btn.ghost{background:transparent; border:1px solid rgba(255,255,255,.22); color:#fff}
+footer{padding:18px; text-align:center; color:#c2cbc6; border-top:1px solid rgba(255,255,255,.1)}
+a{color:var(--gold)}
+@media(max-width:780px){ .grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<header>
+  <h1>Fifty in Style – Gleneagles</h1>
+  <div class="sub">Programma per dag • 15–19 april 2026</div>
+  <div class="btns">
+    <a class="btn" href="index.html">⏳ Terug naar aftelpagina</a>
+    <a class="btn ghost" href="programma.pdf" target="_blank" rel="noopener">📄 Download PDF</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="day">
+    <h2><span class="badge">Wo 15/04</span> Aankomst & Edinburgh mini-route</h2>
+    <div class="kicker">SN2063 – vertrek 11:10 BRU • aankomst ~12:10 EDI • Gleneagles tegen ~18:00</div>
+    <ul class="list">
+      <li>🚐 Private minibus pick-up aan EDI (8 pers + bagage + 4 golftassen)</li>
+      <li>🏙️ <strong>Edinburgh citywalk (±2u)</strong> – Royal Mile & omgeving</li>
+      <li>🍽️ <strong>Lunch (±1u)</strong> in de stad</li>
+      <li>📸 <strong>Fotostop South Queensferry</strong> (Forth Bridges) onderweg naar hotel</li>
+      <li>🏨 Check-in Gleneagles • <strong>Diner 19:30</strong> in <em>The Birnam Brasserie</em></li>
+    </ul>
+  </section>
+
+  <section class="day">
+    <h2><span class="badge">Do 16/04</span> Golf & Falconry + Spa</h2>
+    <div class="grid">
+      <div>
+        <div class="kicker">Golfers (4)</div>
+        <ul class="list">
+          <li>⛳ <strong>King’s Course – 09:30</strong> (start aangevraagd/bevestigd)</li>
+          <li>🏁 Finish rond ~13:30 (sluit mooi aan bij niet-golfers)</li>
+          <li>💷 Resident greenfee: £180 p.p. (indicatie)</li>
+        </ul>
+      </div>
+      <div>
+        <div class="kicker">Niet-golfers</div>
+        <ul class="list">
+          <li>🦅 <strong>Walk with a Hawk – 10:00</strong> (±2,5 uur, voormiddag)</li>
+          <li>💆 <strong>Spa</strong> in de namiddag (behandelingen à la carte)</li>
+        </ul>
+      </div>
+    </div>
+    <ul class="list">
+      <li>🍽️ <strong>Diner 19:30</strong> in <em>The Strathearn</em></li>
+    </ul>
+  </section>
+
+  <section class="day">
+    <h2><span class="badge">Vr 17/04</span> Verjaardag – Stirling & Wallace</h2>
+    <ul class="list">
+      <li>🚐 Pick-up <strong>10:00</strong> – retour ~<strong>16:00</strong></li>
+      <li>🏰 Bezoek <strong>Stirling Castle</strong> en <strong>Wallace Monument</strong></li>
+      <li>🥂 <strong>Feestelijk diner</strong> bij <em>Andrew Fairlie</em> (19:30 – apart gereserveerd)</li>
+    </ul>
+  </section>
+
+  <section class="day">
+    <h2><span class="badge">Za 18/04</span> Golf & natuur</h2>
+    <div class="grid">
+      <div>
+        <div class="kicker">Golfers (4)</div>
+        <ul class="list">
+          <li>⛳ <strong>PGA Centenary – 09:30</strong> (start aangevraagd/bevestigd)</li>
+        </ul>
+      </div>
+      <div>
+        <div class="kicker">Niet-golfers</div>
+        <ul class="list">
+          <li>🥾 <strong>Wandeling (±3u)</strong> in de voormiddag (guided optie beschikbaar)</li>
+          <li>💆 <strong>Spa of shopping</strong> in de namiddag</li>
+        </ul>
+      </div>
+    </div>
+    <ul class="list">
+      <li>🍽️ <strong>Diner 19:30</strong> in <em>The Dormy</em></li>
+    </ul>
+  </section>
+
+  <section class="day">
+    <h2><span class="badge">Zo 19/04</span> Terugreis</h2>
+    <ul class="list">
+      <li>🚐 Transfer naar EDI</li>
+      <li>✈️ <strong>SN2064 – 12:50</strong> EDI → BRU • Aankomst <strong>15:30</strong> Brussel</li>
+    </ul>
+  </section>
+
+  <div class="btns">
+    <a class="btn" href="programma.pdf" target="_blank" rel="noopener">📄 Download programma (PDF)</a>
+    <a class="btn ghost" href="index.html">⏳ Terug naar aftelpagina</a>
+  </div>
+</main>
+
+<footer>© Fifty in Style — Gleneagles, Scotland</footer>
+</body>
+</html>
