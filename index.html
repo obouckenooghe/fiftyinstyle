@@ -10,11 +10,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
+<!-- Open Graph -->
 <meta property="og:title" content="Fifty in Style – Gleneagles Countdown" />
 <meta property="og:description" content="Officiële aftelsite: heen (SN2063) en terug (SN2064)." />
 <meta property="og:image" content="https://assets.tripsmiths.com/images/default/521560-ge-hero-2.jpg" />
 <meta property="og:type" content="website" />
 
+<!-- Favicon -->
 <link rel="icon" href="https://fav.farm/%F0%9F%A5%82" />
 <link rel="apple-touch-icon" href="https://fav.farm/%F0%9F%A5%82" />
 
@@ -37,16 +39,14 @@ header{
   font-size:clamp(28px,4vw,44px);
   text-shadow:0 2px 16px rgba(0,0,0,.45)
 }
-
-/* ✅ groter en mooier */
+/* Groter & eleganter */
 .subtitle{
   font-size:clamp(18px,2.6vw,30px);
   font-weight:600;
   margin-top:6px;
   text-shadow:0 2px 12px rgba(0,0,0,.45)
 }
-
-/* ✅ aparte data */
+/* Datum op eigen regel */
 .dates{
   font-size:clamp(16px,2vw,26px);
   font-weight:600;
@@ -66,13 +66,11 @@ main{
   position:relative;
   overflow:hidden;
 }
-
 main::before{
   content:""; position:absolute; inset:0;
   background: var(--bgimage) no-repeat center 32% / cover;
   filter:saturate(1.05) contrast(1.05);
 }
-
 main::after{
   content:""; position:absolute; inset:0;
   background:
@@ -105,7 +103,6 @@ main::after{
   display:flex; gap:10px; justify-content:center;
   color:var(--muted); font-weight:600;
 }
-
 .badge{
   background:rgba(214,178,100,.16);
   color:var(--gold);
@@ -137,6 +134,7 @@ main::after{
 
 .cta{
   display:flex; gap:8px;
+  flex-wrap:wrap;
   justify-content:center;
   margin-top:6px
 }
@@ -153,7 +151,7 @@ footer{
   color:var(--muted); font-size:12px
 }
 
-/* ✅ iPhone fix: foto hoger + card kleiner */
+/* iPhone fix: foto hoger + card kleiner + 2 kolommen */
 @media(max-width:600px){
   main{padding-top:0!important}
   .card{width:84%; padding:8px 6px}
@@ -192,13 +190,11 @@ footer{
         <div class="tile"><div class="num" id="s1">–</div><div class="label">SEC</div></div>
       </div>
 
+      <!-- Één CTA-rij: zelfde look voor alle knoppen -->
       <div class="cta">
         <button class="btn primary" id="addCalOut">📅 Voeg heenreis toe</button>
-      </div>
-
-      <div class="cta">
         <a class="btn" href="programma.html">📔 Programma per dag</a>
-        <a class="btn ghost" href="programma.pdf" target="_blank">📄 PDF</a>
+        <a class="btn ghost" href="programma.pdf" target="_blank" rel="noopener">📄 PDF</a>
       </div>
     </div>
 
@@ -215,13 +211,11 @@ footer{
         <div class="tile"><div class="num" id="s2">–</div><div class="label">SEC</div></div>
       </div>
 
+      <!-- Zelfde CTA-rij -->
       <div class="cta">
         <button class="btn primary" id="addCalRet">📅 Voeg terugreis toe</button>
-      </div>
-
-      <div class="cta">
         <a class="btn" href="programma.html">📔 Programma per dag</a>
-        <a class="btn ghost" href="programma.pdf" target="_blank">📄 PDF</a>
+        <a class="btn ghost" href="programma.pdf" target="_blank" rel="noopener">📄 PDF</a>
       </div>
     </div>
 
@@ -262,6 +256,7 @@ addCalRet.onclick=()=>makeICS("Terug SN2064",targetRet);
 function makeICS(sum,start){
   const end=new Date(start.getTime()+2*3600*1000);
   const p=n=>String(n).padStart(2,'0');
+  const toICS=d=>d.getUTCFullYear()+p(d.getUTCMonth()+1)+p(d.getUTCDate())+"T"+p(d.getUTCHours())+p(d.getUTCMinutes())+p(d.getUTCSeconds())+"Z";
   const ics="BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nUID:"+Date.now()+
             "@fs\nDTSTAMP:"+toICS(new Date())+"\nDTSTART:"+toICS(start)+
             "\nDTEND:"+toICS(end)+"\nSUMMARY:"+sum+"\nEND:VEVENT\nEND:VCALENDAR";
@@ -269,14 +264,9 @@ function makeICS(sum,start){
   a.href=URL.createObjectURL(new Blob([ics],{type:"text/calendar"}));
   a.download=sum+".ics";a.click();
 }
-function toICS(d){
-  const p=n=>String(n).padStart(2,'0');
-  return d.getUTCFullYear()+p(d.getUTCMonth()+1)+p(d.getUTCDate())+
-         "T"+p(d.getUTCHours())+p(d.getUTCMinutes())+p(d.getUTCSeconds())+"Z";
-}
 
-// ✅ Auto-switch na vertrek
-if(new Date()>targetOut)document.getElementById('tab-ret').click();
+// Auto-switch naar terugreis zodra vertrek voorbij is
+if(new Date()>targetOut) document.getElementById('tab-ret').click();
 </script>
 
 </body>
