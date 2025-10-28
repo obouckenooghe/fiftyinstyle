@@ -147,6 +147,12 @@
 
     /* 📱 iPhone optimalisatie */
     @media(max-width: 600px){
+  nav{
+    display:none !important; /* verberg navigatie op iPhone */
+  }
+}
+
+    @media(max-width: 600px){
       main{padding-top:4px !important}
       .card{width:84%; padding:6px 6px}
       .countdown{grid-template-columns:repeat(2,1fr); gap:6px}
