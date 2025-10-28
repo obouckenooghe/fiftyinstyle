@@ -28,15 +28,6 @@
 *{box-sizing:border-box}
 body{margin:0; font-family:Inter,system-ui,Arial,sans-serif; color:var(--text); background:#0c1512;}
 
-nav{
-  display:flex; justify-content:center; gap:18px;
-  padding:10px 14px 0;
-}
-nav a{
-  color:var(--gold); font-weight:700; text-decoration:none; opacity:.9;
-}
-nav a:hover{opacity:1}
-
 header{text-align:center; padding:14px 16px 0}
 .brand{
   font-family:'Playfair Display',serif; font-weight:700;
@@ -133,7 +124,6 @@ main::after{
 footer{text-align:center; padding:14px; color:var(--muted); font-size:12px}
 
 @media(max-width:600px){
-  nav{display:none!important;} /* ✅ Navigatie volledig weg op iPhone */
   main{padding-top:6px!important}
   .card{width:86%; padding:8px 6px}
   .countdown{grid-template-columns:repeat(2,1fr)}
@@ -144,13 +134,8 @@ footer{text-align:center; padding:14px; color:var(--muted); font-size:12px}
 
 <body>
 
-<nav>
-  <a href="programma.html">📔 Programma</a>
-  <a href="programma.pdf" target="_blank">📄 PDF</a>
-</nav>
-
 <header>
-  <div class="brand">Fifty in Style – Gleneagles, Scotland</div>
+  <div class="brand">Fifty in Style — Gleneagles, Scotland</div>
   <div class="subtitle">Officieel aftellen naar vertrek • 15–19 april 2026</div>
 </header>
 
@@ -256,6 +241,7 @@ function makeICS(sum,start){
 addCalOut.onclick=()=>makeICS("Vertrek SN2063",targetOut);
 addCalRet.onclick=()=>makeICS("Terug SN2064",targetRet);
 
+// Auto-switch naar terugreis na vertrek
 if(new Date()>targetOut)document.getElementById('tab-ret').click();
 </script>
 
