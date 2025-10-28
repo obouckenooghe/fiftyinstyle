@@ -1,299 +1,263 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fifty in Style – Gleneagles Countdown</title>
-  <meta name="description" content="Aftellen naar Brussel → Edinburgh – 15 april 2026 (SN2063) & terug 19 april 2026 (SN2064)." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fifty in Style – Gleneagles Countdown</title>
+<meta name="description" content="Aftellen naar Brussel → Edinburgh – 15 april 2026 (SN2063) & terug 19 april 2026 (SN2064)." />
 
-  <!-- Open Graph for link previews -->
-  <meta property="og:title" content="Fifty in Style – Gleneagles Countdown" />
-  <meta property="og:description" content="Officiële aftelsite: heen (SN2063) en terug (SN2064)." />
-  <meta property="og:image" content="https://assets.tripsmiths.com/images/default/521560-ge-hero-2.jpg" />
-  <meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Favicon -->
-  <link rel="icon" href="https://fav.farm/%F0%9F%A5%82" />
-  <link rel="apple-touch-icon" href="https://fav.farm/%F0%9F%A5%82" />
+<meta property="og:title" content="Fifty in Style – Gleneagles Countdown" />
+<meta property="og:description" content="Officiële aftelsite: heen (SN2063) en terug (SN2064)." />
+<meta property="og:image" content="https://assets.tripsmiths.com/images/default/521560-ge-hero-2.jpg" />
+<meta property="og:type" content="website" />
 
-  <style>
-    :root{
-      --gold:#d6b264; 
-      --text:#f3f3f3; 
-      --muted:#b9c3be;
-      --bgimage:url('https://assets.tripsmiths.com/images/default/521560-ge-hero-2.jpg');
-    }
+<link rel="icon" href="https://fav.farm/%F0%9F%A5%82" />
+<link rel="apple-touch-icon" href="https://fav.farm/%F0%9F%A5%82" />
 
-    *{box-sizing:border-box}
-    body{margin:0; font-family:Inter,system-ui,Arial,sans-serif; color:var(--text); background:#0c1512;}
+<style>
+:root{
+  --gold:#d6b264; 
+  --text:#f3f3f3; 
+  --muted:#b9c3be;
+  --bgimage:url('https://assets.tripsmiths.com/images/default/521560-ge-hero-2.jpg');
+}
+*{box-sizing:border-box}
+body{margin:0; font-family:Inter,system-ui,Arial,sans-serif; color:var(--text); background:#0c1512;}
 
-    /* ✅ Nieuw: Navigatie bovenaan */
-    nav{
-      display:flex; justify-content:center; gap:18px;
-      padding:10px 14px 0;
-    }
-    nav a{
-      color:var(--gold); font-weight:700; text-decoration:none; opacity:.9;
-    }
-    nav a:hover{opacity:1}
+nav{
+  display:flex; justify-content:center; gap:18px;
+  padding:10px 14px 0;
+}
+nav a{
+  color:var(--gold); font-weight:700; text-decoration:none; opacity:.9;
+}
+nav a:hover{opacity:1}
 
-    header{text-align:center; padding:14px 16px 0}
-    .brand{
-      font-family:'Playfair Display',serif; font-weight:700;
-      font-size:clamp(26px,3.5vw,40px);
-      text-shadow:0 2px 16px rgba(0,0,0,.45)
-    }
-    .subtitle{opacity:.9; text-shadow:0 2px 12px rgba(0,0,0,.45)}
+header{text-align:center; padding:14px 16px 0}
+.brand{
+  font-family:'Playfair Display',serif; font-weight:700;
+  font-size:clamp(26px,3.5vw,40px);
+  text-shadow:0 2px 16px rgba(0,0,0,.45)
+}
+.subtitle{opacity:.9; text-shadow:0 2px 12px rgba(0,0,0,.45)}
 
-    main{
-      min-height:100vh;
-      display:grid;
-      place-items:start center;
-      padding-top:40px;
-      padding-left:14px;
-      padding-right:14px;
-      position:relative;
-      overflow:hidden;
-    }
-
-    main::before{
-      content:""; position:absolute; inset:0;
-      background: var(--bgimage) no-repeat center 40% / cover;
-      filter:saturate(1.05) contrast(1.05);
-      transform:scale(1.02);
-    }
-    main::after{
-      content:""; position:absolute; inset:0; pointer-events:none;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.15) 20%, rgba(0,0,0,.35) 55%, rgba(0,0,0,.65) 100%),
-        radial-gradient(800px 320px at 50% 100%, rgba(0,0,0,.35), transparent 60%);
-    }
-
-    .card{
-      width:min(780px,100%);
-      padding:16px 14px;
-      border-radius:18px;
-      background:rgba(0,0,0,.45);
-      backdrop-filter:blur(8px);
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:0 24px 80px rgba(0,0,0,.45);
-      animation:fadeUp .6s ease both;
-    }
-    @keyframes fadeUp{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:translateY(0)}}
-
-    .tabs{display:flex; gap:10px; justify-content:center; margin-bottom:14px}
-    .tab{
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.25);
-      background:rgba(255,255,255,.06);
-      color:#fff;
-      cursor:pointer; font-weight:700;
-      transition:.2s; text-shadow:0 1px 6px rgba(0,0,0,.35)
-    }
-    .tab[aria-selected="true"]{
-      background:rgba(214,178,100,.2); 
-      border-color:rgba(214,178,100,.55);
-      color:var(--gold)
-    }
-
-    .flight{
-      display:flex; flex-wrap:wrap; gap:10px;
-      justify-content:center;
-      color:var(--muted); font-weight:600;
-      margin-top:6px; text-shadow:0 2px 10px rgba(0,0,0,.45)
-    }
-    .badge{
-      background:rgba(214,178,100,.16);
-      color:var(--gold);
-      border:1px solid rgba(214,178,100,.45);
-      padding:6px 10px; border-radius:999px
-    }
-
-    .countdown{
-      display:grid; grid-template-columns:repeat(4, minmax(92px,1fr));
-      gap:14px; margin:16px 0 10px
-    }
-    .tile{
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:18px;
-      padding:18px 10px;
-      text-align:center;
-    }
-    .num{
-      font-family:'Playfair Display',serif;
-      font-size:clamp(36px,6vw,64px);
-      text-shadow:0 2px 14px rgba(0,0,0,.5)
-    }
-    .label{
-      margin-top:6px; font-size:12px;
-      letter-spacing:.12em; text-transform:uppercase;
-      color:var(--muted)
-    }
-
-    .cta{display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:8px}
-    .btn{
-      padding:12px 16px; border-radius:12px; font-weight:700;
-      text-decoration:none; cursor:pointer;
-    }
-    .btn.primary{background:var(--gold); color:#19231f}
-    .btn.ghost{background:transparent; border:1px solid rgba(255,255,255,.22); color:#fff}
-
-    footer{text-align:center; padding:14px; color:var(--muted); font-size:14px}
-
-    /* 📱 iPhone optimalisatie */
-    @media(max-width: 600px){
-  nav{
-    display:none !important; /* verberg navigatie op iPhone */
-  }
+main{
+  min-height:100vh;
+  display:grid;
+  place-items:start center;
+  padding-top:40px;
+  padding-left:14px;
+  padding-right:14px;
+  position:relative;
+  overflow:hidden;
 }
 
-    @media(max-width: 600px){
-      main{padding-top:4px !important}
-      .card{width:84%; padding:6px 6px}
-      .countdown{grid-template-columns:repeat(2,1fr); gap:6px}
-      .tile{padding:6px 4px; border-radius:8px}
-      .num{font-size:26px; line-height:1.05}
-      .label{font-size:9px; margin-top:3px}
-      main::before{background-position:center 10% !important}
-    }
-  </style>
+main::before{
+  content:""; position:absolute; inset:0;
+  background: var(--bgimage) no-repeat center 40% / cover;
+  filter:saturate(1.05) contrast(1.05);
+}
+main::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.10) 20%, rgba(0,0,0,.30) 55%, rgba(0,0,0,.60) 100%);
+}
+
+.card{
+  width:min(780px,100%);
+  padding:10px 10px;
+  border-radius:18px;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.tabs{display:flex; gap:10px; justify-content:center; margin-bottom:8px}
+.tab{
+  padding:10px 14px; border-radius:999px;
+  background:rgba(255,255,255,.06);
+  color:#fff; font-weight:700; cursor:pointer;
+  border:1px solid rgba(255,255,255,.25)
+}
+.tab[aria-selected="true"]{
+  background:rgba(214,178,100,.2); 
+  border-color:rgba(214,178,100,.55);
+  color:var(--gold)
+}
+
+.flight{
+  display:flex; flex-wrap:wrap; gap:10px;
+  justify-content:center; color:var(--muted); font-weight:600;
+}
+
+.badge{
+  background:rgba(214,178,100,.16);
+  color:var(--gold);
+  border:1px solid rgba(214,178,100,.45);
+  padding:6px 10px; border-radius:999px
+}
+
+.countdown{
+  display:grid; grid-template-columns:repeat(4, minmax(68px,1fr));
+  gap:8px; margin:12px 0
+}
+.tile{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;
+  padding:10px 4px;
+}
+.num{
+  font-family:'Playfair Display',serif;
+  font-size:28px;
+}
+.label{
+  margin-top:4px; font-size:9px;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:var(--muted)
+}
+
+.cta{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:6px}
+.btn{
+  padding:10px 12px; border-radius:12px; font-weight:700;
+  text-decoration:none; cursor:pointer;
+  font-size:14px;
+}
+.btn.primary{background:var(--gold); color:#19231f}
+.btn.ghost{background:transparent; border:1px solid rgba(255,255,255,.22); color:#fff}
+
+footer{text-align:center; padding:14px; color:var(--muted); font-size:12px}
+
+@media(max-width:600px){
+  nav{display:none!important;} /* ✅ Navigatie volledig weg op iPhone */
+  main{padding-top:6px!important}
+  .card{width:86%; padding:8px 6px}
+  .countdown{grid-template-columns:repeat(2,1fr)}
+  main::before{background-position:center 10%!important;}
+}
+</style>
 </head>
 
 <body>
 
-  <!-- ✅ Nieuwe navigatie -->
-  <nav>
-    <a href="programma.html">📔 Programma</a>
-    <a href="programma.pdf" target="_blank" rel="noopener">📄 PDF</a>
-  </nav>
+<nav>
+  <a href="programma.html">📔 Programma</a>
+  <a href="programma.pdf" target="_blank">📄 PDF</a>
+</nav>
 
-  <header>
-    <div class="brand">Fifty in Style – Gleneagles, Scotland</div>
-    <div class="subtitle">Officieel aftellen naar vertrek • 15–19 april 2026</div>
-  </header>
+<header>
+  <div class="brand">Fifty in Style – Gleneagles, Scotland</div>
+  <div class="subtitle">Officieel aftellen naar vertrek • 15–19 april 2026</div>
+</header>
 
-  <main>
-    <section class="card">
+<main>
+  <section class="card">
 
-      <div class="tabs">
-        <button class="tab" id="tab-out" aria-selected="true">Heenreis</button>
-        <button class="tab" id="tab-ret" aria-selected="false">Terugreis</button>
+    <div class="tabs">
+      <button class="tab" id="tab-out" aria-selected="true">Heenreis</button>
+      <button class="tab" id="tab-ret" aria-selected="false">Terugreis</button>
+    </div>
+
+    <!-- Heen -->
+    <div id="panel-out">
+      <div class="flight">
+        <span class="badge">✈️ SN2063</span> <span>15 apr 2026 • 11:10</span>
       </div>
 
-      <!-- Heenreis -->
-      <div id="panel-out">
-        <div class="flight">
-          <span class="badge">✈️ SN2063</span>
-          <span>Brussel → Edinburgh • <strong>Vertrek</strong>: 15 april 2026 • 11:10</span>
-        </div>
-
-        <div class="countdown">
-          <div class="tile"><div class="num" id="d1">–</div><div class="label">Dagen</div></div>
-          <div class="tile"><div class="num" id="h1">–</div><div class="label">Uren</div></div>
-          <div class="tile"><div class="num" id="m1">–</div><div class="label">Minuten</div></div>
-          <div class="tile"><div class="num" id="s1">–</div><div class="label">Seconden</div></div>
-        </div>
-
-        <div class="cta">
-          <button class="btn primary" id="addCalOut">📅 Voeg heenreis toe (ICS)</button>
-          <button class="btn ghost" id="copyLink">🔗 Kopieer link</button>
-        </div>
-
-        <!-- ✅ Programma knoppen -->
-        <div class="cta">
-          <a class="btn" href="programma.html">📔 Programma per dag</a>
-          <a class="btn ghost" href="programma.pdf" target="_blank">📄 Download PDF</a>
-        </div>
+      <div class="countdown">
+        <div class="tile"><div class="num" id="d1">–</div><div class="label">DGN</div></div>
+        <div class="tile"><div class="num" id="h1">–</div><div class="label">HR</div></div>
+        <div class="tile"><div class="num" id="m1">–</div><div class="label">MIN</div></div>
+        <div class="tile"><div class="num" id="s1">–</div><div class="label">SEC</div></div>
       </div>
 
-      <!-- Terugreis -->
-      <div id="panel-ret" hidden>
-        <div class="flight">
-          <span class="badge">✈️ SN2064</span>
-          <span>Edinburgh → Brussel • <strong>Vertrek</strong>: 19 april 2026 • 12:50</span>
-        </div>
-
-        <div class="countdown">
-          <div class="tile"><div class="num" id="d2">–</div><div class="label">Dagen</div></div>
-          <div class="tile"><div class="num" id="h2">–</div><div class="label">Uren</div></div>
-          <div class="tile"><div class="num" id="m2">–</div><div class="label">Minuten</div></div>
-          <div class="tile"><div class="num" id="s2">–</div><div class="label">Seconden</div></div>
-        </div>
-
-        <div class="cta">
-          <button class="btn primary" id="addCalRet">📅 Voeg terugreis toe (ICS)</button>
-        </div>
-
-        <!-- ✅ Programma knoppen -->
-        <div class="cta">
-          <a class="btn" href="programma.html">📔 Programma per dag</a>
-          <a class="btn ghost" href="programma.pdf" target="_blank">📄 Download PDF</a>
-        </div>
+      <div class="cta">
+        <button class="btn primary" id="addCalOut">📅 Voeg heenreis toe</button>
       </div>
 
-    </section>
-  </main>
+      <!-- Programma -->
+      <div class="cta">
+        <a class="btn" href="programma.html">📔 Programma per dag</a>
+        <a class="btn ghost" href="programma.pdf" target="_blank">📄 PDF</a>
+      </div>
+    </div>
 
-  <footer>© Fifty in Style — Gleneagles, Scotland</footer>
+    <!-- Terug -->
+    <div id="panel-ret" hidden>
+      <div class="flight">
+        <span class="badge">✈️ SN2064</span> <span>19 apr 2026 • 12:50</span>
+      </div>
 
-  <script>
-    const targetOut = new Date("2026-04-15T11:10:00+02:00");
-    const targetRet = new Date("2026-04-19T12:50:00+01:00");
+      <div class="countdown">
+        <div class="tile"><div class="num" id="d2">–</div><div class="label">DGN</div></div>
+        <div class="tile"><div class="num" id="h2">–</div><div class="label">HR</div></div>
+        <div class="tile"><div class="num" id="m2">–</div><div class="label">MIN</div></div>
+        <div class="tile"><div class="num" id="s2">–</div><div class="label">SEC</div></div>
+      </div>
 
-    const el1={d:d1,h:h1,m:m1,s:s1}, el2={d:d2,h:h2,m:m2,s:s2};
+      <div class="cta">
+        <button class="btn primary" id="addCalRet">📅 Voeg terugreis toe</button>
+      </div>
 
-    function pad(n){return String(n).padStart(2,'0');}
-    function tick(t,e){
-      const diff=t-new Date();
-      if(diff<=0)return e.d.textContent=e.h.textContent=e.m.textContent=e.s.textContent="00";
-      const s=Math.floor(diff/1000);
-      e.d.textContent=Math.floor(s/86400);
-      e.h.textContent=pad(Math.floor(s%86400/3600));
-      e.m.textContent=pad(Math.floor(s%3600/60));
-      e.s.textContent=pad(s%60);
-    }
-    setInterval(()=>{tick(targetOut,el1);tick(targetRet,el2)},1000);
-    tick(targetOut,el1);tick(targetRet,el2);
+      <!-- Programma -->
+      <div class="cta">
+        <a class="btn" href="programma.html">📔 Programma per dag</a>
+        <a class="btn ghost" href="programma.pdf" target="_blank">📄 PDF</a>
+      </div>
+    </div>
 
-    document.getElementById('tab-out').onclick=()=>{select('out')}
-    document.getElementById('tab-ret').onclick=()=>{select('ret')}
-    function select(x){
-      const o=x==='out';
-      document.getElementById('tab-out').setAttribute("aria-selected",o);
-      document.getElementById('tab-ret').setAttribute("aria-selected",!o);
-      document.getElementById('panel-out').hidden=!o;
-      document.getElementById('panel-ret').hidden=o;
-    }
+  </section>
+</main>
 
-    function toICS(dt){
-      const p=n=>String(n).padStart(2,'0');
-      return dt.getUTCFullYear()+p(dt.getUTCMonth()+1)+p(dt.getUTCDate())+"T"+p(dt.getUTCHours())+p(dt.getUTCMinutes())+p(dt.getUTCSeconds())+"Z";
-    }
-    function makeICS(s,start,dur,desc,loc,file){
-      const end=new Date(start.getTime()+dur*3600*1000);
-      const ics="BEGIN:VCALENDAR\\nVERSION:2.0\\nBEGIN:VEVENT\\nUID:"+Date.now()+"@fiftyinstyle\\nDTSTAMP:"+toICS(new Date())+"\\nDTSTART:"+toICS(start)+"\\nDTEND:"+toICS(end)+"\\nSUMMARY:"+s+"\\nDESCRIPTION:"+desc+"\\nLOCATION:"+loc+"\\nEND:VEVENT\\nEND:VCALENDAR";
-      const a=document.createElement('a');
-      a.href=URL.createObjectURL(new Blob([ics],{type:"text/calendar"}));
-      a.download=file;a.click();
-    }
-    document.getElementById('addCalOut').onclick=()=>makeICS("Vertrek naar Edinburgh – SN2063",targetOut,2,"BRU → EDI – Fifty in Style","Brussels Airport","Heenreis.ics");
-    document.getElementById('addCalRet').onclick=()=>makeICS("Terug naar Brussel – SN2064",targetRet,2,"EDI → BRU – Fifty in Style","Edinburgh Airport","Terugreis.ics");
+<footer>© Fifty in Style — Gleneagles, Scotland</footer>
 
-    document.getElementById('copyLink').onclick=async()=>{
-      try{await navigator.clipboard.writeText(location.href);alert("Link gekopieerd!")}
-      catch{alert("Kopieer zelf vanuit de adresbalk")}
-    };
+<script>
+const targetOut=new Date("2026-04-15T11:10:00+02:00");
+const targetRet=new Date("2026-04-19T12:50:00+01:00");
+const el1={d:d1,h:h1,m:m1,s:s1}, el2={d:d2,h:h2,m:m2,s:s2};
 
-    // ✅ Auto-switch naar terugreis na vertrek
-    (function(){
-      if(new Date()>targetOut)document.getElementById('tab-ret').click();
-    })();
-  </script>
+function pad(n){return String(n).padStart(2,'0');}
+function tick(t,e){
+  const diff=t-new Date();
+  if(diff<=0)return e.d.textContent=e.h.textContent=e.m.textContent=e.s.textContent="00";
+  const s=Math.floor(diff/1000);
+  e.d.textContent=Math.floor(s/86400);
+  e.h.textContent=pad(Math.floor(s%86400/3600));
+  e.m.textContent=pad(Math.floor(s%3600/60));
+  e.s.textContent=pad(s%60);
+}
+setInterval(()=>{tick(targetOut,el1);tick(targetRet,el2)},1000);
+
+document.getElementById('tab-out').onclick=()=>select(true);
+document.getElementById('tab-ret').onclick=()=>select(false);
+function select(o){
+  document.getElementById('tab-out').setAttribute("aria-selected",o);
+  document.getElementById('tab-ret').setAttribute("aria-selected",!o);
+  document.getElementById('panel-out').hidden=!o;
+  document.getElementById('panel-ret').hidden=o;
+}
+
+function makeICS(sum,start){
+  const end=new Date(start.getTime()+2*3600*1000);
+  const f=v=>String(v).padStart(2,'0');
+  const toICS=d=>d.getUTCFullYear()+f(d.getUTCMonth()+1)+f(d.getUTCDate())+
+               "T"+f(d.getUTCHours())+f(d.getUTCMinutes())+f(d.getUTCSeconds())+"Z";
+  const ics="BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nUID:"+Date.now()+
+            "@fifty\nDTSTAMP:"+toICS(new Date())+"\nDTSTART:"+toICS(start)+
+            "\nDTEND:"+toICS(end)+"\nSUMMARY:"+sum+"\nEND:VEVENT\nEND:VCALENDAR";
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([ics],{type:"text/calendar"}));
+  a.download=sum+".ics";a.click();
+}
+addCalOut.onclick=()=>makeICS("Vertrek SN2063",targetOut);
+addCalRet.onclick=()=>makeICS("Terug SN2064",targetRet);
+
+if(new Date()>targetOut)document.getElementById('tab-ret').click();
+</script>
 
 </body>
 </html>
