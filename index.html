@@ -70,11 +70,12 @@ main::before{
   content:""; position:absolute; inset:0;
   background: var(--bgimage) no-repeat center 32% / cover;
   filter:saturate(1.05) contrast(1.05);
+  pointer-events:none;            /* ✅ overlay kliks doorlaten */
 }
 main::after{
   content:""; position:absolute; inset:0;
-  background:
-    linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.10) 20%, rgba(0,0,0,.30) 60%, rgba(0,0,0,.65) 100%);
+  background:linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.10) 20%, rgba(0,0,0,.30) 60%, rgba(0,0,0,.65) 100%);
+  pointer-events:none;            /* ✅ overlay kliks doorlaten */
 }
 
 .card{
@@ -84,6 +85,8 @@ main::after{
   background:rgba(0,0,0,.45);
   backdrop-filter:blur(8px);
   border:1px solid rgba(255,255,255,.12);
+  position:relative;              /* ✅ boven overlays */
+  z-index:1;                      /* ✅ boven overlays */
 }
 
 .tabs{display:flex; gap:10px; justify-content:center; margin-bottom:8px}
@@ -142,9 +145,10 @@ main::after{
   padding:10px 12px; border-radius:12px; font-weight:700;
   text-decoration:none; cursor:pointer;
   font-size:14px;
+  background:var(--gold);          /* ✅ alle knoppen goud */
+  color:#19231f;                   /* leesbaar op goud */
+  border:1px solid rgba(0,0,0,.0); /* uniform */
 }
-.btn.primary{background:var(--gold); color:#19231f}
-.btn.ghost{background:transparent; border:1px solid rgba(255,255,255,.22); color:#fff}
 
 footer{
   text-align:center; padding:14px;
@@ -190,11 +194,11 @@ footer{
         <div class="tile"><div class="num" id="s1">–</div><div class="label">SEC</div></div>
       </div>
 
-      <!-- Één CTA-rij: zelfde look voor alle knoppen -->
+      <!-- Eén CTA-rij: alle knoppen goud -->
       <div class="cta">
-        <button class="btn primary" id="addCalOut">📅 Voeg heenreis toe</button>
-        <a class="btn" href="programma.html">📔 Programma per dag</a>
-        <a class="btn ghost" href="programma.pdf" target="_blank" rel="noopener">📄 PDF</a>
+        <button class="btn" id="addCalOut">📅 Voeg heenreis toe</button>
+        <a class="btn" href="programma.html">📔 Programma</a>
+        <a class="btn" href="programma.pdf" target="_blank" rel="noopener">📄 Programma-PDF</a>
       </div>
     </div>
 
@@ -211,11 +215,10 @@ footer{
         <div class="tile"><div class="num" id="s2">–</div><div class="label">SEC</div></div>
       </div>
 
-      <!-- Zelfde CTA-rij -->
       <div class="cta">
-        <button class="btn primary" id="addCalRet">📅 Voeg terugreis toe</button>
-        <a class="btn" href="programma.html">📔 Programma per dag</a>
-        <a class="btn ghost" href="programma.pdf" target="_blank" rel="noopener">📄 PDF</a>
+        <button class="btn" id="addCalRet">📅 Voeg terugreis toe</button>
+        <a class="btn" href="programma.html">📔 Programma</a>
+        <a class="btn" href="programma.pdf" target="_blank" rel="noopener">📄 Programma-PDF</a>
       </div>
     </div>
 
@@ -242,8 +245,9 @@ function tick(t,e){
 setInterval(()=>{tick(targetOut,el1);tick(targetRet,el2)},1000);
 tick(targetOut,el1);tick(targetRet,el2);
 
-document.getElementById('tab-out').onclick=()=>select(true);
-document.getElementById('tab-ret').onclick=()=>select(false);
+// Tabs
+document.getElementById('tab-out').addEventListener('click',()=>select(true));
+document.getElementById('tab-ret').addEventListener('click',()=>select(false));
 function select(o){
   document.getElementById('tab-out').setAttribute("aria-selected",o);
   document.getElementById('tab-ret').setAttribute("aria-selected",!o);
@@ -251,12 +255,14 @@ function select(o){
   document.getElementById('panel-ret').hidden=o;
 }
 
-addCalOut.onclick=()=>makeICS("Vertrek SN2063",targetOut);
-addCalRet.onclick=()=>makeICS("Terug SN2064",targetRet);
+// ICS helpers
+function toICS(d){
+  const p=n=>String(n).padStart(2,'0');
+  return d.getUTCFullYear()+p(d.getUTCMonth()+1)+p(d.getUTCDate())+
+         "T"+p(d.getUTCHours())+p(d.getUTCMinutes())+p(d.getUTCSeconds())+"Z";
+}
 function makeICS(sum,start){
   const end=new Date(start.getTime()+2*3600*1000);
-  const p=n=>String(n).padStart(2,'0');
-  const toICS=d=>d.getUTCFullYear()+p(d.getUTCMonth()+1)+p(d.getUTCDate())+"T"+p(d.getUTCHours())+p(d.getUTCMinutes())+p(d.getUTCSeconds())+"Z";
   const ics="BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nUID:"+Date.now()+
             "@fs\nDTSTAMP:"+toICS(new Date())+"\nDTSTART:"+toICS(start)+
             "\nDTEND:"+toICS(end)+"\nSUMMARY:"+sum+"\nEND:VEVENT\nEND:VCALENDAR";
@@ -265,10 +271,15 @@ function makeICS(sum,start){
   a.download=sum+".ics";a.click();
 }
 
+// Buttons (robust listeners)
+document.getElementById('addCalOut').addEventListener('click',()=>makeICS("Vertrek SN2063",targetOut));
+document.getElementById('addCalRet').addEventListener('click',()=>makeICS("Terug SN2064",targetRet));
+
 // Auto-switch naar terugreis zodra vertrek voorbij is
 if(new Date()>targetOut) document.getElementById('tab-ret').click();
 </script>
 
 </body>
 </html>
+
 
