@@ -1,285 +1,182 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Fifty in Style – Gleneagles Countdown</title>
-<meta name="description" content="Aftellen naar Brussel → Edinburgh – 15 april 2026 (SN2063) & terug 19 april 2026 (SN2064)." />
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
-<!-- Open Graph -->
-<meta property="og:title" content="Fifty in Style – Gleneagles Countdown" />
-<meta property="og:description" content="Officiële aftelsite: heen (SN2063) en terug (SN2064)." />
-<meta property="og:image" content="https://assets.tripsmiths.com/images/default/521560-ge-hero-2.jpg" />
-<meta property="og:type" content="website" />
-
-<!-- Favicon -->
-<link rel="icon" href="https://fav.farm/%F0%9F%A5%82" />
-<link rel="apple-touch-icon" href="https://fav.farm/%F0%9F%A5%82" />
-
-<style>
-:root{
-  --gold:#d6b264; 
-  --text:#f3f3f3; 
-  --muted:#b9c3be;
-  --bgimage:url('https://assets.tripsmiths.com/images/default/521560-ge-hero-2.jpg');
-}
-*{box-sizing:border-box}
-body{margin:0; font-family:Inter,system-ui,Arial,sans-serif; color:var(--text); background:#0c1512;}
-
-header{
-  text-align:center;
-  padding:16px 16px 0;
-}
-.brand{
-  font-family:'Playfair Display',serif; font-weight:700;
-  font-size:clamp(28px,4vw,44px);
-  text-shadow:0 2px 16px rgba(0,0,0,.45)
-}
-/* Groter & eleganter */
-.subtitle{
-  font-size:clamp(18px,2.6vw,30px);
-  font-weight:600;
-  margin-top:6px;
-  text-shadow:0 2px 12px rgba(0,0,0,.45)
-}
-/* Datum op eigen regel */
-.dates{
-  font-size:clamp(16px,2vw,26px);
-  font-weight:600;
-  opacity:.85;
-  margin-top:4px;
-  letter-spacing:.04em;
-  text-shadow:0 2px 12px rgba(0,0,0,.45)
-}
-
-main{
-  min-height:100vh;
-  display:grid;
-  place-items:start center;
-  padding-top:30px;
-  padding-left:14px;
-  padding-right:14px;
-  position:relative;
-  overflow:hidden;
-}
-main::before{
-  content:""; position:absolute; inset:0;
-  background: var(--bgimage) no-repeat center 32% / cover;
-  filter:saturate(1.05) contrast(1.05);
-  pointer-events:none;            /* ✅ overlay kliks doorlaten */
-}
-main::after{
-  content:""; position:absolute; inset:0;
-  background:linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.10) 20%, rgba(0,0,0,.30) 60%, rgba(0,0,0,.65) 100%);
-  pointer-events:none;            /* ✅ overlay kliks doorlaten */
-}
-
-.card{
-  width:min(780px,100%);
-  padding:10px 10px;
-  border-radius:18px;
-  background:rgba(0,0,0,.45);
-  backdrop-filter:blur(8px);
-  border:1px solid rgba(255,255,255,.12);
-  position:relative;              /* ✅ boven overlays */
-  z-index:1;                      /* ✅ boven overlays */
-}
-
-.tabs{display:flex; gap:10px; justify-content:center; margin-bottom:8px}
-.tab{
-  padding:10px 14px; border-radius:999px;
-  background:rgba(255,255,255,.06);
-  color:#fff; font-weight:700; cursor:pointer;
-  border:1px solid rgba(255,255,255,.25)
-}
-.tab[aria-selected="true"]{
-  background:rgba(214,178,100,.2); 
-  border-color:rgba(214,178,100,.55);
-  color:var(--gold)
-}
-
-.flight{
-  display:flex; gap:10px; justify-content:center;
-  color:var(--muted); font-weight:600;
-}
-.badge{
-  background:rgba(214,178,100,.16);
-  color:var(--gold);
-  border:1px solid rgba(214,178,100,.45);
-  padding:6px 10px; border-radius:999px
-}
-
-.countdown{
-  display:grid;
-  grid-template-columns:repeat(4, minmax(68px,1fr));
-  gap:8px;
-  margin:12px 0
-}
-.tile{
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:12px;
-  padding:10px 4px;
-}
-.num{
-  font-family:'Playfair Display',serif;
-  font-size:28px;
-}
-.label{
-  margin-top:4px; font-size:9px;
-  letter-spacing:.12em; text-transform:uppercase;
-  color:var(--muted)
-}
-
-.cta{
-  display:flex; gap:8px;
-  flex-wrap:wrap;
-  justify-content:center;
-  margin-top:6px
-}
-.btn{
-  padding:10px 12px; border-radius:12px; font-weight:700;
-  text-decoration:none; cursor:pointer;
-  font-size:14px;
-  background:var(--gold);          /* ✅ alle knoppen goud */
-  color:#19231f;                   /* leesbaar op goud */
-  border:1px solid rgba(0,0,0,.0); /* uniform */
-}
-
-footer{
-  text-align:center; padding:14px;
-  color:var(--muted); font-size:12px
-}
-
-/* iPhone fix: foto hoger + card kleiner + 2 kolommen */
-@media(max-width:600px){
-  main{padding-top:0!important}
-  .card{width:84%; padding:8px 6px}
-  .countdown{grid-template-columns:repeat(2,1fr)}
-  main::before{background-position:center 6%!important;}
-}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fifty in Style – Countdown</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-
-<header>
-  <div class="brand">Fifty in Style — Gleneagles</div>
-  <div class="subtitle">Officieel aftellen naar vertrek</div>
-  <div class="dates">15–19 april 2026</div>
-</header>
-
-<main>
-  <section class="card">
-
-    <div class="tabs">
-      <button class="tab" id="tab-out" aria-selected="true">Heenreis</button>
-      <button class="tab" id="tab-ret" aria-selected="false">Terugreis</button>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        Fifty in Style
+        <small>Gleneagles • 15–19 april 2026</small>
+      </div>
+      <nav class="nav">
+        <a href="programma.html">🗓️ Programma</a>
+        <a href="programma.pdf">📄 PDF</a>
+      </nav>
     </div>
+  </div>
 
-    <!-- HEEN -->
-    <div id="panel-out">
-      <div class="flight">
-        <span class="badge">✈️ SN2063</span> <span>15 apr 11:10</span>
+  <main class="container">
+    <header class="hero">
+      <h1>Countdown</h1>
+      <p class="sub">Op naar Scotland — “Fifty in Style”.</p>
+
+      <div class="actions">
+        <a class="btn" href="programma.html">🗓️ Bekijk programma</a>
+        <a class="btn" href="programma.pdf">📄 Download programma</a>
+        <button class="btn" id="addToCalendarBtn" type="button">📅 Add to Calendar</button>
       </div>
+    </header>
 
-      <div class="countdown">
-        <div class="tile"><div class="num" id="d1">–</div><div class="label">DGN</div></div>
-        <div class="tile"><div class="num" id="h1">–</div><div class="label">HR</div></div>
-        <div class="tile"><div class="num" id="m1">–</div><div class="label">MIN</div></div>
-        <div class="tile"><div class="num" id="s1">–</div><div class="label">SEC</div></div>
-      </div>
+    <section class="grid">
+      <!-- Countdown card -->
+      <article class="card">
+        <h2>⏳ Nog even…</h2>
 
-      <!-- Eén CTA-rij: alle knoppen goud -->
-      <div class="cta">
-        <button class="btn" id="addCalOut">📅 Voeg heenreis toe</button>
-        <a class="btn" href="programma.html">📔 Programma</a>
-        <a class="btn" href="programma.pdf" target="_blank" rel="noopener">📄 Programma-PDF</a>
-      </div>
-    </div>
+        <div class="badges" id="countdownBadges" aria-live="polite">
+          <span class="badge">— dagen</span>
+          <span class="badge">— uur</span>
+          <span class="badge">— min</span>
+          <span class="badge">— sec</span>
+        </div>
 
-    <!-- TERUG -->
-    <div id="panel-ret" hidden>
-      <div class="flight">
-        <span class="badge">✈️ SN2064</span> <span>19 apr 12:40</span>
-      </div>
+        <p class="muted" id="countdownNote" style="margin-bottom:0;">
+          Doelmoment: wo 15/04/2026 (lokale tijd van je toestel).
+        </p>
+      </article>
 
-      <div class="countdown">
-        <div class="tile"><div class="num" id="d2">–</div><div class="label">DGN</div></div>
-        <div class="tile"><div class="num" id="h2">–</div><div class="label">HR</div></div>
-        <div class="tile"><div class="num" id="m2">–</div><div class="label">MIN</div></div>
-        <div class="tile"><div class="num" id="s2">–</div><div class="label">SEC</div></div>
-      </div>
+      <!-- Quick overview -->
+      <article class="card">
+        <h2>✈️ Vluchten (SN)</h2>
+        <div class="timeline">
+          <div class="row">
+            <div class="time">15/04</div>
+            <div class="item"><strong>SN2063</strong> — Brussel → Edinburgh <span class="muted">(11:10 → 11:50)</span></div>
+          </div>
+          <div class="row">
+            <div class="time">19/04</div>
+            <div class="item"><strong>SN2064</strong> — Edinburgh → Brussel <span class="muted">(12:40 → 15:20)</span></div>
+          </div>
+        </div>
 
-      <div class="cta">
-        <button class="btn" id="addCalRet">📅 Voeg terugreis toe</button>
-        <a class="btn" href="programma.html">📔 Programma</a>
-        <a class="btn" href="programma.pdf" target="_blank" rel="noopener">📄 Programma-PDF</a>
-      </div>
-    </div>
+        <div class="badges">
+          <span class="badge">🚌 Private minibus</span>
+          <span class="badge">🛎️ Gleneagles Hotel</span>
+        </div>
+      </article>
 
-  </section>
-</main>
+      <!-- Useful links -->
+      <article class="card">
+        <h2>🔗 Handige links</h2>
+        <div class="timeline">
+          <div class="row">
+            <div class="time">🗓️</div>
+            <div class="item"><a href="programma.html">Programma per dag</a></div>
+          </div>
+          <div class="row">
+            <div class="time">📄</div>
+            <div class="item"><a href="programma.pdf">Programma (PDF)</a></div>
+          </div>
+        </div>
+        <p class="muted" style="margin-bottom:0;">
+          Tip: voeg later hier ook een RSVP-link of Google Map toe.
+        </p>
+      </article>
 
-<footer>© Fifty in Style — Gleneagles, Scotland</footer>
+      <!-- Mini packing / reminders -->
+      <article class="card">
+        <h2>✅ Mini-checklist</h2>
+        <div class="badges">
+          <span class="badge">⛳ spikes / handschoen</span>
+          <span class="badge">🧥 regenlaag</span>
+          <span class="badge">👔 dinner smart</span>
+          <span class="badge">🧖 spa</span>
+        </div>
+        <p class="muted" style="margin-bottom:0;">
+          (We kunnen dit later uitbreiden naar een echte paklijst-pagina.)
+        </p>
+      </article>
+    </section>
 
-<script>
-const targetOut=new Date("2026-04-15T11:10:00+02:00");
-const targetRet=new Date("2026-04-19T12:40:00+01:00");
-const el1={d:d1,h:h1,m:m1,s:s1}, el2={d:d2,h:h2,m:m2,s:s2};
+    <div class="footer">© Fifty in Style — Gleneagles, Scotland</div>
+  </main>
 
-function pad(n){return String(n).padStart(2,'0');}
-function tick(t,e){
-  const diff=t-new Date();
-  if(diff<=0)return e.d.textContent=e.h.textContent=e.m.textContent=e.s.textContent="00";
-  const s=Math.floor(diff/1000);
-  e.d.textContent=Math.floor(s/86400);
-  e.h.textContent=pad(Math.floor(s%86400/3600));
-  e.m.textContent=pad(Math.floor(s%3600/60));
-  e.s.textContent=pad(s%60);
-}
-setInterval(()=>{tick(targetOut,el1);tick(targetRet,el2)},1000);
-tick(targetOut,el1);tick(targetRet,el2);
+  <script>
+    // ===== Countdown =====
+    // Target: 2026-04-15 00:00 local time (browser)
+    const target = new Date(2026, 3, 15, 0, 0, 0); // months are 0-based (3 = April)
+    const badgesEl = document.getElementById("countdownBadges");
+    const noteEl = document.getElementById("countdownNote");
 
-// Tabs
-document.getElementById('tab-out').addEventListener('click',()=>select(true));
-document.getElementById('tab-ret').addEventListener('click',()=>select(false));
-function select(o){
-  document.getElementById('tab-out').setAttribute("aria-selected",o);
-  document.getElementById('tab-ret').setAttribute("aria-selected",!o);
-  document.getElementById('panel-out').hidden=!o;
-  document.getElementById('panel-ret').hidden=o;
-}
+    function pad(n){ return String(n).padStart(2, "0"); }
 
-// ICS helpers
-function toICS(d){
-  const p=n=>String(n).padStart(2,'0');
-  return d.getUTCFullYear()+p(d.getUTCMonth()+1)+p(d.getUTCDate())+
-         "T"+p(d.getUTCHours())+p(d.getUTCMinutes())+p(d.getUTCSeconds())+"Z";
-}
-function makeICS(sum,start){
-  const end=new Date(start.getTime()+2*3600*1000);
-  const ics="BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nUID:"+Date.now()+
-            "@fs\nDTSTAMP:"+toICS(new Date())+"\nDTSTART:"+toICS(start)+
-            "\nDTEND:"+toICS(end)+"\nSUMMARY:"+sum+"\nEND:VEVENT\nEND:VCALENDAR";
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(new Blob([ics],{type:"text/calendar"}));
-  a.download=sum+".ics";a.click();
-}
+    function tick(){
+      const now = new Date();
+      const diff = target.getTime() - now.getTime();
 
-// Buttons (robust listeners)
-document.getElementById('addCalOut').addEventListener('click',()=>makeICS("Vertrek SN2063",targetOut));
-document.getElementById('addCalRet').addEventListener('click',()=>makeICS("Terug SN2064",targetRet));
+      if (diff <= 0){
+        badgesEl.innerHTML = `
+          <span class="badge">🎉 Het is zover!</span>
+          <span class="badge">Scotland time</span>
+        `;
+        noteEl.textContent = "Have an amazing trip!";
+        return;
+      }
 
-// Auto-switch naar terugreis zodra vertrek voorbij is
-if(new Date()>targetOut) document.getElementById('tab-ret').click();
-</script>
+      const totalSeconds = Math.floor(diff / 1000);
+      const days = Math.floor(totalSeconds / (3600 * 24));
+      const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
+      const mins = Math.floor((totalSeconds % 3600) / 60);
+      const secs = totalSeconds % 60;
 
+      badgesEl.innerHTML = `
+        <span class="badge"><strong>${days}</strong> dagen</span>
+        <span class="badge"><strong>${pad(hours)}</strong> uur</span>
+        <span class="badge"><strong>${pad(mins)}</strong> min</span>
+        <span class="badge"><strong>${pad(secs)}</strong> sec</span>
+      `;
+    }
+
+    tick();
+    setInterval(tick, 1000);
+
+    // ===== Add to Calendar (.ics download) =====
+    // Simple all-day event (most reliable across calendar apps)
+    function downloadICS(){
+      const ics =
+`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Fifty in Style//Gleneagles//NL
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:fiftyinstyle-20260415@obouckenooghe.github.io
+DTSTAMP:${new Date().toISOString().replace(/[-:]/g,'').split('.')[0]}Z
+SUMMARY:Fifty in Style – Gleneagles (Scotland)
+DTSTART;VALUE=DATE:20260415
+DTEND;VALUE=DATE:20260420
+DESCRIPTION:Gleneagles trip (15–19 April 2026). See programma.html for details.
+END:VEVENT
+END:VCALENDAR`;
+
+      const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Fifty-in-Style_Gleneagles_15-19Apr2026.ics";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      URL.revokeObjectURL(url);
+    }
+
+    document.getElementById("addToCalendarBtn").addEventListener("click", downloadICS);
+  </script>
 </body>
 </html>
-
-
