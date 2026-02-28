@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fifty in Style – Gleneagles Countdown</title>
+  <title>Fifty in Style – Countdown</title>
 
   <style>
     :root{
       --text: rgba(10,10,12,.92);
-      --muted: rgba(10,10,12,.68);
+      --muted: rgba(10,10,12,.66);
       --line: rgba(0,0,0,.12);
-      --shadow: 0 18px 60px rgba(0,0,0,.18);
+      --shadow: 0 18px 60px rgba(0,0,0,.16);
       --radius: 18px;
     }
 
@@ -27,22 +27,22 @@
     /* PHOTO-FIRST background + LIGHT overlay */
     body.home{
       background:
-        radial-gradient(1200px 700px at 50% 10%, rgba(255,255,255,.30), rgba(255,255,255,.55)),
+        radial-gradient(1200px 700px at 50% 10%, rgba(255,255,255,.26), rgba(255,255,255,.56)),
         url("assets/gleneagles.webp") center/cover no-repeat fixed;
     }
     @media (max-width: 900px){
       body.home{
         background:
-          radial-gradient(900px 600px at 50% 10%, rgba(255,255,255,.32), rgba(255,255,255,.60)),
+          radial-gradient(900px 600px at 50% 10%, rgba(255,255,255,.28), rgba(255,255,255,.62)),
           url("assets/gleneagles.webp") center/cover no-repeat;
       }
     }
 
     .topbar{
       position: sticky; top: 0; z-index: 1000;
-      background: rgba(255,255,255,.55);
+      background: rgba(255,255,255,.22);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,.55);
+      border-bottom: 1px solid rgba(255,255,255,.35);
     }
     .topbar-inner{
       max-width: 980px; margin: 0 auto;
@@ -60,41 +60,42 @@
       border: 1px solid transparent;
     }
     .nav a:hover{
-      background: rgba(255,255,255,.55);
+      background: rgba(255,255,255,.28);
       border-color: rgba(0,0,0,.10);
     }
 
     .container{ max-width: 980px; margin: 0 auto; padding: 22px 16px 44px; }
 
-    .hero{ padding: 28px 0 10px; }
-    h1{ margin: 0 0 8px; font-size: 2.5rem; }
+    .hero{ padding: 34px 0 10px; }
+    h1{ margin: 0 0 8px; font-size: 2.6rem; }
     .sub{ margin:0; color: var(--muted); font-size: 1.08rem; }
 
+    /* Transparent “glass” button */
     .actions{ margin-top: 16px; display:flex; flex-wrap:wrap; gap:10px; }
     .btn{
       display:inline-flex; align-items:center; gap:10px;
       padding: 10px 12px;
       border-radius: 14px;
       border: 1px solid rgba(0,0,0,.12);
-      background: rgba(255,255,255,.62);
+      background: rgba(255,255,255,.12);   /* very transparent */
       box-shadow: var(--shadow);
       text-decoration:none;
       cursor: pointer;
       color: var(--text);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
     }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.75); }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.20); }
 
-    /* Single countdown card */
+    /* Single transparent countdown card */
     .card{
       margin-top: 22px;
-      background: rgba(255,255,255,.68);
-      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.14);   /* very transparent */
+      border: 1px solid rgba(0,0,0,.12);
       border-radius: var(--radius);
       padding: 16px 18px;
       box-shadow: var(--shadow);
-      backdrop-filter: blur(12px);
-      max-width: 720px;
+      backdrop-filter: blur(14px);
+      max-width: 760px;
     }
     .card h2{ margin:0 0 10px; font-size: 1.18rem; }
     .muted{ color: var(--muted); }
@@ -102,17 +103,17 @@
     .badges{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 10px; }
     .badge{
       display:inline-flex; align-items:center; gap:8px;
-      padding: 9px 12px;
+      padding: 10px 12px;
       border-radius: 999px;
       border: 1px solid rgba(0,0,0,.10);
-      background: rgba(255,255,255,.62);
+      background: rgba(255,255,255,.18);  /* transparent */
       color: rgba(10,10,12,.88);
-      font-size: 1.02rem;
+      font-size: 1.04rem;
     }
 
     .footer{
       margin-top: 22px;
-      color: rgba(10,10,12,.65);
+      color: rgba(10,10,12,.62);
       font-size: .9rem;
     }
   </style>
@@ -137,12 +138,6 @@
       <h1>Countdown</h1>
       <p class="sub">Op naar Scotland — “Fifty in Style”.</p>
 
-      <div class="actions">
-        <a class="btn" href="programma.html">🗓️ Bekijk programma</a>
-        <a class="btn" href="programma.pdf">📄 Download programma</a>
-        <button class="btn" id="addToCalendarBtn" type="button">📅 Add to Calendar</button>
-      </div>
-
       <section class="card" aria-label="Countdown">
         <h2>⏳ Nog even…</h2>
         <div class="badges" id="countdownBadges" aria-live="polite">
@@ -151,20 +146,61 @@
           <span class="badge">— min</span>
           <span class="badge">— sec</span>
         </div>
-        <p class="muted" id="countdownNote" style="margin:10px 0 0;">
-          Doelmoment: wo 15/04/2026 (00:00, lokale tijd van je toestel).
-        </p>
       </section>
+
+      <div class="actions">
+        <button class="btn" id="addToCalendarBtn" type="button">📅 Add to Calendar</button>
+      </div>
 
       <div class="footer">© Fifty in Style — Gleneagles, Scotland</div>
     </header>
   </main>
 
   <script>
-    // Countdown to 2026-04-15 00:00 local time
-    const target = new Date(2026, 3, 15, 0, 0, 0);
+    // Countdown target: 15/04/2026 11:10 Europe/Brussels
+    // We compute it robustly by taking the Brussels local clock time (11:10)
+    // and converting it to an absolute UTC timestamp using Intl.
+    //
+    // This avoids relying on the user's device timezone.
+
+    function getBrusselsTargetUTC() {
+      // 2026-04-15 11:10 in Europe/Brussels
+      const partsToISO = (parts) => {
+        const map = Object.fromEntries(parts.map(p => [p.type, p.value]));
+        return `${map.year}-${map.month}-${map.day}T${map.hour}:${map.minute}:${map.second || "00"}`;
+      };
+
+      // Start with a naive date in UTC, then adjust by the Brussels offset at that moment
+      // Approach:
+      // 1) Create a Date from the same wall-clock time interpreted as UTC.
+      // 2) Find what Brussels time that Date corresponds to.
+      // 3) Offset-correct.
+      const assumedUTC = new Date(Date.UTC(2026, 3, 15, 11, 10, 0)); // 11:10Z assumption
+      const fmt = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Europe/Brussels",
+        year: "numeric", month: "2-digit", day: "2-digit",
+        hour: "2-digit", minute: "2-digit", second: "2-digit",
+        hourCycle: "h23"
+      });
+
+      // What is the Brussels wall-clock time for assumedUTC?
+      const parts = fmt.formatToParts(assumedUTC);
+      const isoLocal = partsToISO(parts);
+
+      // Parse that wall-clock time as if it were UTC again
+      const brusselsAsUTC = new Date(isoLocal + "Z");
+
+      // Desired Brussels wall-clock time as UTC-parsed
+      const desiredAsUTC = new Date(Date.UTC(2026, 3, 15, 11, 10, 0));
+
+      // The difference between desired and what we got tells us the offset error
+      const deltaMs = desiredAsUTC.getTime() - brusselsAsUTC.getTime();
+
+      return new Date(assumedUTC.getTime() + deltaMs);
+    }
+
+    const target = getBrusselsTargetUTC();
     const badgesEl = document.getElementById("countdownBadges");
-    const noteEl = document.getElementById("countdownNote");
     const pad = (n) => String(n).padStart(2, "0");
 
     function tick(){
@@ -173,7 +209,6 @@
 
       if (diff <= 0){
         badgesEl.innerHTML = `<span class="badge">🎉 Het is zover!</span><span class="badge">Scotland time</span>`;
-        noteEl.textContent = "Have an amazing trip!";
         return;
       }
 
@@ -193,7 +228,7 @@
     tick();
     setInterval(tick, 1000);
 
-    // Add to Calendar (.ics download)
+    // Add to Calendar (all-day trip block + departure time in description)
     function downloadICS(){
       const dtstamp = new Date().toISOString().replace(/[-:]/g,'').split('.')[0] + "Z";
       const ics =
@@ -208,7 +243,7 @@ DTSTAMP:${dtstamp}
 SUMMARY:Fifty in Style – Gleneagles (Scotland)
 DTSTART;VALUE=DATE:20260415
 DTEND;VALUE=DATE:20260420
-DESCRIPTION:Gleneagles trip (15–19 April 2026). See programma.html for details.
+DESCRIPTION:Trip 15–19 April 2026. Countdown target: 15/04/2026 11:10 (Europe/Brussels). See programma.html for details.
 END:VEVENT
 END:VCALENDAR`;
 
