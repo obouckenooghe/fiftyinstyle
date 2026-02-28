@@ -24,23 +24,26 @@
       min-height: 100vh;
     }
 
-    /* Background photo with darker overlay (less bright) */
+    /* Desktop/tablet: full-bleed (cover) with darker overlay */
     body.home{
       background:
         linear-gradient(rgba(0,0,0,.42), rgba(0,0,0,.42)),
         url("assets/gleneagles.webp") center/cover no-repeat fixed;
     }
-    @media (max-width: 900px){
+
+    /* iPhone/small screens: show more of the photo (contain = less crop) */
+    @media (max-width: 600px){
       body.home{
         background:
-          linear-gradient(rgba(0,0,0,.44), rgba(0,0,0,.44)),
-          url("assets/gleneagles.webp") center/cover no-repeat;
+          linear-gradient(rgba(0,0,0,.52), rgba(0,0,0,.52)),
+          radial-gradient(900px 700px at 50% 10%, rgba(255,255,255,.08), transparent),
+          url("assets/gleneagles.webp") center/contain no-repeat;
       }
     }
 
     .topbar{
       position: sticky; top: 0; z-index: 1000;
-      background: transparent;              /* truly transparent */
+      background: transparent;
       border-bottom: 1px solid rgba(255,255,255,.10);
     }
     .topbar-inner{
@@ -48,7 +51,10 @@
       padding: 12px 16px;
       display:flex; align-items:center; justify-content:space-between; gap:12px;
     }
-    .brand{ font-weight: 900; letter-spacing: .2px; text-shadow: 0 2px 18px rgba(0,0,0,.55); }
+    .brand{
+      font-weight: 900; letter-spacing: .2px;
+      text-shadow: 0 2px 18px rgba(0,0,0,.55);
+    }
     .brand small{ display:block; font-weight:650; opacity:.82; margin-top:2px; }
 
     .nav{ display:flex; flex-wrap:wrap; gap:8px; }
@@ -60,14 +66,23 @@
     }
     .nav a:hover{
       border-color: rgba(255,255,255,.22);
-      background: rgba(0,0,0,.10);         /* tiny hover, still “transparent feel” */
+      background: rgba(0,0,0,.10);
     }
 
     .container{ max-width: 980px; margin: 0 auto; padding: 22px 16px 44px; }
 
     .hero{ padding: 34px 0 10px; }
-    h1{ margin: 0 0 8px; font-size: 2.7rem; text-shadow: 0 2px 18px rgba(0,0,0,.55); }
-    .sub{ margin:0; color: var(--muted); font-size: 1.08rem; text-shadow: 0 2px 18px rgba(0,0,0,.55); }
+    h1{
+      margin: 0 0 8px;
+      font-size: 2.7rem;
+      text-shadow: 0 2px 18px rgba(0,0,0,.55);
+    }
+    .sub{
+      margin:0;
+      color: var(--muted);
+      font-size: 1.08rem;
+      text-shadow: 0 2px 18px rgba(0,0,0,.55);
+    }
 
     /* Transparent card: no blur, no milky fill */
     .card{
@@ -99,9 +114,8 @@
       padding: 10px 12px;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,.22);
-      background: transparent;             /* truly transparent */
+      background: transparent;
       box-shadow: 0 14px 45px rgba(0,0,0,.28);
-      text-decoration:none;
       cursor: pointer;
       color: var(--text);
     }
@@ -159,7 +173,6 @@
   <script>
     // Countdown target: 15/04/2026 11:10 Europe/Brussels (Belgian time)
     function brusselsDateUTC(year, month, day, hour, minute){
-      // Create an approximate UTC date, then correct using the timezone offset at that moment
       const approx = new Date(Date.UTC(year, month-1, day, hour, minute, 0));
       const fmt = new Intl.DateTimeFormat("en-GB", {
         timeZone: "Europe/Brussels",
@@ -203,7 +216,7 @@
     tick();
     setInterval(tick, 1000);
 
-    // Add to Calendar
+    // Add to Calendar (.ics download)
     function downloadICS(){
       const dtstamp = new Date().toISOString().replace(/[-:]/g,'').split('.')[0] + "Z";
       const ics =
