@@ -3,13 +3,135 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fifty in Style – Countdown</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Fifty in Style – Gleneagles Countdown</title>
+
+  <style>
+    :root{
+      --bg: #07070a;
+      --card: rgba(18,18,22,.62);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --line: rgba(255,255,255,.14);
+      --shadow: 0 14px 40px rgba(0,0,0,.55);
+      --radius: 18px;
+    }
+
+    *{ box-sizing: border-box; }
+
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(255,255,255,.06), transparent),
+        radial-gradient(900px 500px at 80% 0%, rgba(255,255,255,.05), transparent),
+        var(--bg);
+    }
+
+    /* Background image only on home */
+    body.home{
+      background:
+        linear-gradient(rgba(7,7,10,.78), rgba(7,7,10,.78)),
+        url("assets/gleneagles.webp") center/cover no-repeat fixed;
+    }
+    @media (max-width: 900px){
+      body.home{
+        background:
+          linear-gradient(rgba(7,7,10,.82), rgba(7,7,10,.82)),
+          url("assets/gleneagles.webp") center/cover no-repeat;
+      }
+    }
+
+    a{ color: inherit; }
+
+    .topbar{
+      position: sticky; top: 0; z-index: 1000;
+      background: rgba(7,7,10,.55);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner{
+      max-width: 980px; margin: 0 auto;
+      padding: 12px 16px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .brand{ font-weight: 800; letter-spacing: .2px; }
+    .brand small{ display:block; font-weight:600; opacity:.7; margin-top:2px; }
+
+    .nav{ display:flex; flex-wrap:wrap; gap:8px; }
+    .nav a{
+      text-decoration:none;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+    }
+    .nav a:hover{ background: rgba(255,255,255,.08); border-color: var(--line); }
+
+    .container{ max-width: 980px; margin: 0 auto; padding: 22px 16px 44px; }
+
+    .hero{ padding: 18px 0 6px; }
+    h1{ margin: 0 0 6px; font-size: 2.0rem; }
+    .sub{ margin:0; color: var(--muted); }
+
+    .actions{ margin-top: 14px; display:flex; flex-wrap:wrap; gap:10px; }
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      box-shadow: var(--shadow);
+      text-decoration:none;
+      cursor: pointer;
+      color: var(--text);
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); }
+
+    .grid{ display:grid; grid-template-columns: 1fr; gap:14px; margin-top: 18px; }
+    @media (min-width: 860px){
+      .grid{ grid-template-columns: 1fr 1fr; }
+      .grid .span2{ grid-column: 1 / -1; }
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      box-shadow: var(--shadow);
+    }
+    .card h2{ margin:0 0 8px; font-size: 1.15rem; }
+    .muted{ color: var(--muted); }
+
+    .badges{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 10px; }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.80);
+      font-size: .95rem;
+    }
+
+    .timeline{ display:flex; flex-direction:column; gap:10px; margin: 10px 0 0; }
+    .row{
+      display:flex; gap:10px; align-items:flex-start;
+      padding: 10px 0;
+      border-top: 1px dashed rgba(255,255,255,.18);
+    }
+    .row:first-child{ border-top: none; padding-top:0; }
+    .time{ min-width: 92px; font-weight:750; opacity:.9; }
+    .item{ flex:1; }
+
+    .footer{ margin-top: 18px; color: var(--muted); font-size: .9rem; }
+  </style>
 </head>
-<body>
+
+<body class="home">
   <div class="topbar">
     <div class="topbar-inner">
-      <div class="home">
+      <div class="brand">
         Fifty in Style
         <small>Gleneagles • 15–19 april 2026</small>
       </div>
@@ -27,29 +149,27 @@
 
       <div class="actions">
         <a class="btn" href="programma.html">🗓️ Bekijk programma</a>
-        <a class="btn" href="programma.pdf">📄 Download programma</a>
+        <a class="btn" href="programma.pdf">📄 Download PDF</a>
         <button class="btn" id="addToCalendarBtn" type="button">📅 Add to Calendar</button>
       </div>
     </header>
 
     <section class="grid">
-      <!-- Countdown card -->
-      <article class="card">
+      <!-- Countdown -->
+      <article class="card span2">
         <h2>⏳ Nog even…</h2>
-
         <div class="badges" id="countdownBadges" aria-live="polite">
           <span class="badge">— dagen</span>
           <span class="badge">— uur</span>
           <span class="badge">— min</span>
           <span class="badge">— sec</span>
         </div>
-
-        <p class="muted" id="countdownNote" style="margin-bottom:0;">
-          Doelmoment: wo 15/04/2026 (lokale tijd van je toestel).
+        <p class="muted" id="countdownNote" style="margin:10px 0 0;">
+          Doelmoment: wo 15/04/2026 (00:00, lokale tijd van je toestel).
         </p>
       </article>
 
-      <!-- Quick overview -->
+      <!-- Flights -->
       <article class="card">
         <h2>✈️ Vluchten (SN)</h2>
         <div class="timeline">
@@ -62,16 +182,15 @@
             <div class="item"><strong>SN2064</strong> — Edinburgh → Brussel <span class="muted">(12:40 → 15:20)</span></div>
           </div>
         </div>
-
         <div class="badges">
           <span class="badge">🚌 Private minibus</span>
           <span class="badge">🛎️ Gleneagles Hotel</span>
         </div>
       </article>
 
-      <!-- Useful links -->
+      <!-- Quick links -->
       <article class="card">
-        <h2>🔗 Handige links</h2>
+        <h2>🔗 Snelkoppelingen</h2>
         <div class="timeline">
           <div class="row">
             <div class="time">🗓️</div>
@@ -82,13 +201,13 @@
             <div class="item"><a href="programma.pdf">Programma (PDF)</a></div>
           </div>
         </div>
-        <p class="muted" style="margin-bottom:0;">
-          Tip: voeg later hier ook een RSVP-link of Google Map toe.
+        <p class="muted" style="margin:10px 0 0;">
+          Later kunnen we hier RSVP + Maps toevoegen.
         </p>
       </article>
 
-      <!-- Mini packing / reminders -->
-      <article class="card">
+      <!-- Checklist -->
+      <article class="card span2">
         <h2>✅ Mini-checklist</h2>
         <div class="badges">
           <span class="badge">⛳ spikes / handschoen</span>
@@ -96,9 +215,6 @@
           <span class="badge">👔 dinner smart</span>
           <span class="badge">🧖 spa</span>
         </div>
-        <p class="muted" style="margin-bottom:0;">
-          (We kunnen dit later uitbreiden naar een echte paklijst-pagina.)
-        </p>
       </article>
     </section>
 
@@ -108,7 +224,7 @@
   <script>
     // ===== Countdown =====
     // Target: 2026-04-15 00:00 local time (browser)
-    const target = new Date(2026, 3, 15, 0, 0, 0); // months are 0-based (3 = April)
+    const target = new Date(2026, 3, 15, 0, 0, 0); // month is 0-based: 3 = April
     const badgesEl = document.getElementById("countdownBadges");
     const noteEl = document.getElementById("countdownNote");
 
@@ -145,8 +261,8 @@
     setInterval(tick, 1000);
 
     // ===== Add to Calendar (.ics download) =====
-    // Simple all-day event (most reliable across calendar apps)
     function downloadICS(){
+      const dtstamp = new Date().toISOString().replace(/[-:]/g,'').split('.')[0] + "Z";
       const ics =
 `BEGIN:VCALENDAR
 VERSION:2.0
@@ -155,7 +271,7 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
 UID:fiftyinstyle-20260415@obouckenooghe.github.io
-DTSTAMP:${new Date().toISOString().replace(/[-:]/g,'').split('.')[0]}Z
+DTSTAMP:${dtstamp}
 SUMMARY:Fifty in Style – Gleneagles (Scotland)
 DTSTART;VALUE=DATE:20260415
 DTEND;VALUE=DATE:20260420
