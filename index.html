@@ -23,6 +23,8 @@
       color: var(--text);
       min-height: 100vh;
       background: #000;
+      /* ruimte onderaan zodat content niet onder de fixed footer verdwijnt */
+      padding-bottom: 54px;
     }
 
     body.home{
@@ -69,11 +71,9 @@
       background: rgba(255,255,255,.06);
     }
 
-    .container{ max-width: 980px; margin: 0 auto; padding: 0 16px 44px; }
+    .container{ max-width: 980px; margin: 0 auto; padding: 0 16px 0; }
 
-    .hero{
-      padding: 14px 0 10px;
-    }
+    .hero{ padding: 14px 0 10px; }
     h1{
       margin: 0 0 6px;
       font-size: 2.45rem;
@@ -94,7 +94,7 @@
 
     /* Card moved LOWER */
     .card{
-      margin-top: 42px; /* was 14px */
+      margin-top: 70px; /* LOWER than before */
       background: transparent;
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -103,7 +103,7 @@
       max-width: 760px;
     }
     @media (max-width: 600px){
-      .card{ margin-top: 60px; }
+      .card{ margin-top: 52px; }
     }
 
     .card h2{ margin:0 0 10px; font-size: 1.18rem; }
@@ -136,11 +136,18 @@
       transform: translateY(-1px);
     }
 
+    /* Footer fixed at bottom */
     .footer{
-      margin-top: 18px;
-      color: rgba(255,255,255,.74);
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      padding: 14px 16px;
+      text-align: center;
       font-size: .9rem;
+      color: rgba(255,255,255,.78);
+      background: rgba(0,0,0,.55);
+      border-top: 1px solid rgba(255,255,255,.10);
       text-shadow: 0 2px 18px rgba(0,0,0,.55);
+      z-index: 1000;
     }
   </style>
 </head>
@@ -177,10 +184,10 @@
       <div class="actions">
         <button class="btn" id="addToCalendarBtn" type="button">📅 Add to Calendar</button>
       </div>
-
-      <div class="footer">© Fifty in Style — Gleneagles, Scotland</div>
     </header>
   </main>
+
+  <div class="footer">© Fifty in Style – Gleneagles, Scotland</div>
 
   <script>
     function brusselsDateUTC(year, month, day, hour, minute){
