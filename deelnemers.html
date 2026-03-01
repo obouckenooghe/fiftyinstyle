@@ -54,25 +54,13 @@
       transition: transform .12s ease, background .12s ease;
       white-space: nowrap;
     }
-    .navbtn:hover{
-      background: rgba(0,0,0,.30);
-      transform: translateY(-1px);
-    }
+    .navbtn:hover{ background: rgba(0,0,0,.30); transform: translateY(-1px); }
 
     .container{ max-width: 980px; margin: 0 auto; padding: 0 16px 0; }
 
     .hero{ padding: 14px 0 10px; }
-    h1{
-      margin: 0 0 6px;
-      font-size: 2.1rem;
-      text-shadow: 0 2px 18px rgba(0,0,0,.55);
-    }
-    .sub{
-      margin:0;
-      color: var(--muted);
-      font-size: 1.02rem;
-      text-shadow: 0 2px 18px rgba(0,0,0,.55);
-    }
+    h1{ margin: 0 0 6px; font-size: 2.1rem; text-shadow: 0 2px 18px rgba(0,0,0,.55); }
+    .sub{ margin:0; color: var(--muted); font-size: 1.02rem; text-shadow: 0 2px 18px rgba(0,0,0,.55); }
 
     .grid{
       margin-top: 18px;
@@ -101,24 +89,21 @@
       overflow: hidden;
       background: rgba(255,255,255,.05);
       display:flex; align-items:center; justify-content:center;
-    }
-    .avatar img{
-  width:100%;
-  height:100%;
-  object-fit: cover;
-  object-position: 50% 5%; /* schuift focus omhoog (toon meer bovenkant) */
-  display:block;
+      cursor: zoom-in;
     }
 
-    .name{
-      margin: 10px 0 0;
-      font-weight: 850;
+    .avatar img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      object-position: 50% 15%;
+      display:block;
+      transition: transform .18s ease;
     }
-    .meta{
-      margin: 4px 0 0;
-      color: var(--muted);
-      font-size: .95rem;
-    }
+    .avatar:hover img{ transform: scale(1.02); }
+
+    .name{ margin: 10px 0 0; font-weight: 850; }
+    .meta{ margin: 4px 0 0; color: var(--muted); font-size: .95rem; }
 
     .footer{
       position: fixed;
@@ -132,6 +117,114 @@
       text-shadow: 0 2px 18px rgba(0,0,0,.55);
       z-index: 1000;
     }
+
+    /* MODAL */
+    .modal{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.80);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 2000;
+    }
+    .modal.open{ display: flex; }
+
+    .modal-inner{
+      width: min(980px, 96vw);
+      max-height: 86vh;
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+    }
+
+    .modal-top{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      color: rgba(255,255,255,.92);
+    }
+    .modal-title{
+      font-weight: 850;
+      letter-spacing: .2px;
+      text-shadow: 0 2px 18px rgba(0,0,0,.55);
+    }
+    .close-btn{
+      border: 1px solid rgba(255,255,255,.28);
+      background: rgba(0,0,0,.25);
+      color: rgba(255,255,255,.92);
+      border-radius: 999px;
+      padding: 10px 12px;
+      cursor: pointer;
+      box-shadow: 0 10px 28px rgba(0,0,0,.25);
+    }
+    .close-btn:hover{ background: rgba(255,255,255,.06); }
+
+    .modal-figure{
+      margin:0;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.20);
+      background: rgba(0,0,0,.20);
+      box-shadow: 0 22px 90px rgba(0,0,0,.55);
+      overflow: hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      max-height: 78vh;
+      position: relative;
+      touch-action: pan-y; /* allow vertical scroll outside, but we swipe horizontally on img */
+    }
+
+    .modal-figure img{
+      width: 100%;
+      height: auto;
+      max-height: 78vh;
+      object-fit: contain;
+      display:block;
+      cursor: zoom-out;
+      user-select: none;
+      -webkit-user-drag: none;
+      touch-action: pan-y;
+    }
+
+    .modal-hint{
+      color: rgba(255,255,255,.70);
+      font-size: .92rem;
+      text-align: center;
+      text-shadow: 0 2px 18px rgba(0,0,0,.55);
+    }
+
+    .nav-arrow{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 1px solid rgba(255,255,255,.28);
+      background: rgba(0,0,0,.25);
+      color: rgba(255,255,255,.92);
+      border-radius: 999px;
+      width: 44px;
+      height: 44px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor: pointer;
+      box-shadow: 0 10px 28px rgba(0,0,0,.25);
+      z-index: 5;
+    }
+    .nav-arrow:hover{ background: rgba(255,255,255,.06); }
+    .nav-prev{ left: 10px; }
+    .nav-next{ right: 10px; }
+
+    @media (max-width: 600px){
+      .nav-arrow{ width: 40px; height: 40px; }
+      .nav-prev{ left: 8px; }
+      .nav-next{ right: 8px; }
+    }
+
+    body.modal-open{ overflow: hidden; }
   </style>
 </head>
 
@@ -153,52 +246,186 @@
   <main class="container">
     <header class="hero">
       <h1>Deelnemers</h1>
-      <p class="sub">Afbeelding van iedereen die meegaat.</p>
+      <p class="sub">Klik op een karikatuur om te vergroten (swipe om te wisselen).</p>
     </header>
 
-    <section class="grid">
+    <section class="grid" id="grid">
       <article class="person">
-        <div class="avatar"><img src="assets/deelnemers/olivier.png" alt="Karikatuur Olivier" /></div>
+        <div class="avatar" data-name="Olivier" data-img="assets/deelnemers/olivier.png">
+          <img src="assets/deelnemers/olivier.png" alt="Karikatuur Olivier" />
+        </div>
         <p class="name">Olivier</p><p class="meta">—</p>
       </article>
 
       <article class="person">
-        <div class="avatar"><img src="assets/deelnemers/valerie.png" alt="Karikatuur Valerie" /></div>
+        <div class="avatar" data-name="Valerie" data-img="assets/deelnemers/valerie.png">
+          <img src="assets/deelnemers/valerie.png" alt="Karikatuur Valerie" />
+        </div>
         <p class="name">Valerie</p><p class="meta">—</p>
       </article>
 
       <article class="person">
-        <div class="avatar"><img src="assets/deelnemers/philippe.png" alt="Karikatuur Philippe" /></div>
+        <div class="avatar" data-name="Philippe" data-img="assets/deelnemers/philippe.png">
+          <img src="assets/deelnemers/philippe.png" alt="Karikatuur Philippe" />
+        </div>
         <p class="name">Philippe</p><p class="meta">—</p>
       </article>
 
       <article class="person">
-        <div class="avatar"><img src="assets/deelnemers/isabelle.png" alt="Karikatuur Isabelle" /></div>
+        <div class="avatar" data-name="Isabelle" data-img="assets/deelnemers/isabelle.png">
+          <img src="assets/deelnemers/isabelle.png" alt="Karikatuur Isabelle" />
+        </div>
         <p class="name">Isabelle</p><p class="meta">—</p>
       </article>
 
       <article class="person">
-        <div class="avatar"><img src="assets/deelnemers/wim.png" alt="Karikatuur Wim" /></div>
+        <div class="avatar" data-name="Wim" data-img="assets/deelnemers/wim.png">
+          <img src="assets/deelnemers/wim.png" alt="Karikatuur Wim" />
+        </div>
         <p class="name">Wim</p><p class="meta">—</p>
       </article>
 
       <article class="person">
-        <div class="avatar"><img src="assets/deelnemers/stephanie.png" alt="Karikatuur Stephanie" /></div>
+        <div class="avatar" data-name="Stephanie" data-img="assets/deelnemers/stephanie.png">
+          <img src="assets/deelnemers/stephanie.png" alt="Karikatuur Stephanie" />
+        </div>
         <p class="name">Stephanie</p><p class="meta">—</p>
       </article>
 
       <article class="person">
-        <div class="avatar"><img src="assets/deelnemers/david.png" alt="Karikatuur David" /></div>
+        <div class="avatar" data-name="David" data-img="assets/deelnemers/david.png">
+          <img src="assets/deelnemers/david.png" alt="Karikatuur David" />
+        </div>
         <p class="name">David</p><p class="meta">—</p>
       </article>
 
       <article class="person">
-        <div class="avatar"><img src="assets/deelnemers/nathalie.png" alt="Karikatuur Nathalie" /></div>
+        <div class="avatar" data-name="Nathalie" data-img="assets/deelnemers/nathalie.png">
+          <img src="assets/deelnemers/nathalie.png" alt="Karikatuur Nathalie" />
+        </div>
         <p class="name">Nathalie</p><p class="meta">—</p>
       </article>
     </section>
   </main>
 
   <div class="footer">© Fifty in Style – Gleneagles, Scotland</div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-inner" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-top">
+        <div class="modal-title" id="modalTitle">—</div>
+        <button class="close-btn" id="closeBtn" type="button">✕ Sluiten</button>
+      </div>
+
+      <figure class="modal-figure" id="modalFigure">
+        <button class="nav-arrow nav-prev" id="prevBtn" type="button" aria-label="Vorige">‹</button>
+        <img id="modalImg" src="" alt="" />
+        <button class="nav-arrow nav-next" id="nextBtn" type="button" aria-label="Volgende">›</button>
+      </figure>
+
+      <div class="modal-hint">Swipe links/rechts of gebruik ← →. Klik buiten de foto of druk op <strong>ESC</strong> om te sluiten.</div>
+    </div>
+  </div>
+
+  <script>
+    const avatars = Array.from(document.querySelectorAll(".avatar"));
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modalImg");
+    const modalTitle = document.getElementById("modalTitle");
+    const closeBtn = document.getElementById("closeBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const modalFigure = document.getElementById("modalFigure");
+
+    let currentIndex = -1;
+
+    function showAt(index){
+      if (!avatars.length) return;
+      currentIndex = (index + avatars.length) % avatars.length;
+
+      const el = avatars[currentIndex];
+      const name = el.dataset.name || "Deelnemer";
+      const img = el.dataset.img || el.querySelector("img")?.src;
+
+      modalTitle.textContent = name;
+      modalImg.src = img;
+      modalImg.alt = `Karikatuur ${name}`;
+    }
+
+    function openModalAt(index){
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+      showAt(index);
+    }
+
+    function closeModal(){
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+      modalImg.src = "";
+      modalImg.alt = "";
+      modalTitle.textContent = "—";
+      currentIndex = -1;
+    }
+
+    function next(){ if (currentIndex >= 0) showAt(currentIndex + 1); }
+    function prev(){ if (currentIndex >= 0) showAt(currentIndex - 1); }
+
+    avatars.forEach((el, idx) => {
+      el.addEventListener("click", () => openModalAt(idx));
+    });
+
+    closeBtn.addEventListener("click", closeModal);
+    nextBtn.addEventListener("click", next);
+    prevBtn.addEventListener("click", prev);
+
+    // click outside modal-inner closes; clicking image toggles close (as requested earlier)
+    modal.addEventListener("click", (e) => {
+      const clickedInside = e.target.closest(".modal-inner");
+      if (!clickedInside) closeModal();
+    });
+    modalImg.addEventListener("click", closeModal);
+
+    // keyboard
+    window.addEventListener("keydown", (e) => {
+      if (!modal.classList.contains("open")) return;
+      if (e.key === "Escape") closeModal();
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+    });
+
+    // swipe on image/figure
+    let startX = 0;
+    let startY = 0;
+    let tracking = false;
+
+    function onTouchStart(e){
+      if (!modal.classList.contains("open")) return;
+      const t = e.touches[0];
+      startX = t.clientX;
+      startY = t.clientY;
+      tracking = true;
+    }
+
+    function onTouchEnd(e){
+      if (!tracking) return;
+      tracking = false;
+
+      const t = e.changedTouches[0];
+      const dx = t.clientX - startX;
+      const dy = t.clientY - startY;
+
+      // ignore vertical scroll gestures
+      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+
+      if (dx < 0) next();
+      else prev();
+    }
+
+    modalFigure.addEventListener("touchstart", onTouchStart, { passive: true });
+    modalFigure.addEventListener("touchend", onTouchEnd, { passive: true });
+  </script>
 </body>
 </html>
