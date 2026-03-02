@@ -123,3 +123,25 @@ body.home{
       url("assets/gleneagles.jpg") center/cover no-repeat;
   }
 }
+/* Links subtiel */
+a:hover{
+  color: var(--text);
+  text-shadow: 0 0 18px rgba(201,162,74,.18);
+}
+
+/* Buttons / pill badges: gouden hover */
+.btn, button, .topbar a{
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+}
+
+.btn:hover, button:hover, .topbar a:hover{
+  border-color: var(--gold-line);
+  box-shadow: 0 0 0 1px var(--gold-soft), 0 16px 40px rgba(0,0,0,.25);
+}
+
+/* Toetsenbord-focus (heel belangrijk voor “premium” feel) */
+:focus-visible{
+  outline: 2px solid var(--gold-line);
+  outline-offset: 3px;
+  border-radius: 12px;
+}
