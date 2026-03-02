@@ -17,7 +17,6 @@
   --gold-soft: rgba(201,162,74,.22);
   --gold-line: rgba(201,162,74,.35);
 }
-
 /* ---------- Base ---------- */
 *{ box-sizing: border-box; }
 html, body{ height: 100%; }
