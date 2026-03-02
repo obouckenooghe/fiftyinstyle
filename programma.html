@@ -61,9 +61,7 @@
 
     .container{ max-width: 980px; margin: 0 auto; padding: 0 16px 0; }
 
-    .hero{
-      padding: 14px 0 10px;
-    }
+    .hero{ padding: 14px 0 10px; }
     h1{
       margin: 0 0 6px;
       font-size: 2.2rem;
@@ -200,7 +198,6 @@
         <small>Programma • Gleneagles • 15–19 april 2026</small>
       </div>
 
-      <!-- ✅ NAV: nu ook Deelnemers -->
       <nav class="nav">
         <a class="navbtn" href="index.html">⏳ Countdown</a>
         <a class="navbtn" href="deelnemers.html">👥 Deelnemers</a>
@@ -269,7 +266,7 @@
 
     <!-- Vrijdag -->
     <section id="vr" class="card day">
-      <h2>Vr 17/04 — Castle, Lochs & Golden Celebration”</h2>
+      <h2>Vr 17/04 — Castle, Lochs & Golden Celebration</h2>
       <div class="timeline">
         <div class="row"><div class="time">09:45</div><div class="item">🚌 Pick-up</div></div>
         <div class="row"><div class="time">AM</div><div class="item">🏰 Bezoek Stirling Castle & Port of Menteith</div></div>
@@ -300,23 +297,13 @@
           </div>
         </div>
       </div>
-        <div class="row">
-          <div class="time">14:30</div>
-          <div class="item">🍽️ lichte lunch</div>
-        </div>
+
+      <div class="timeline">
+        <div class="row"><div class="time">14:30</div><div class="item">🍽️ lichte lunch</div></div>
+        <div class="row"><div class="time">15:30</div><div class="item">🎯 Clay Pigeon Shooting</div></div>
       </div>
-      <!-- ✅ EXTRA ACTIVITEIT -->
-      <div class="timeline" style="margin-top: 12px;">
-        <div class="row">
-          <div class="time">15:30</div>
-          <div class="item">🎯 Clay Pigeon Shooting</div>
-        </div>
-      </div>
-       <div class="badges">
-        <div class="timeline" style="margin-top: 12px;">
-        <div class="row">
-          <div class="time">19:30</div>
-          <div class="item">🍽️ 19:30 — Diner: The Dormy</div>
+      <div class="badges">
+        <span class="badge">🍽️ 19:30 — Diner: The Dormy</span>
       </div>
     </section>
 
@@ -333,7 +320,6 @@
   <div class="footer">© Fifty in Style – Gleneagles, Scotland</div>
 
   <script>
-    // Highlight active day in the jump nav
     const daySections = Array.from(document.querySelectorAll("section.day"));
     const navLinks = Array.from(document.querySelectorAll(".jump a[data-target]"));
 
@@ -359,10 +345,7 @@
     });
 
     daySections.forEach(sec => observer.observe(sec));
-
-    navLinks.forEach(a => {
-      a.addEventListener("click", () => setActive(a.dataset.target));
-    });
+    navLinks.forEach(a => a.addEventListener("click", () => setActive(a.dataset.target)));
 
     window.addEventListener("hashchange", () => {
       const id = location.hash.slice(1);
