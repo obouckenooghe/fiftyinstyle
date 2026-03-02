@@ -42,16 +42,21 @@
     .brand{ font-weight: 900; letter-spacing: .2px; }
     .brand small{ display:block; font-weight:650; opacity:.82; margin-top:2px; }
 
-    .nav{ display:flex; flex-wrap:wrap; gap:8px; }
-    .nav a{
-      text-decoration:none;
-      padding: 8px 10px;
-      border-radius: 12px;
-      border: 1px solid transparent;
+    .nav{ display:flex; flex-wrap:wrap; gap:10px; }
+    .navbtn{
+      text-decoration: none;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.28);
+      background: rgba(0,0,0,.18);
+      color: rgba(255,255,255,.95);
+      box-shadow: 0 10px 28px rgba(0,0,0,.25);
+      transition: transform .12s ease, background .12s ease;
+      white-space: nowrap;
     }
-    .nav a:hover{
-      border-color: rgba(255,255,255,.22);
-      background: rgba(255,255,255,.06);
+    .navbtn:hover{
+      background: rgba(0,0,0,.30);
+      transform: translateY(-1px);
     }
 
     .container{ max-width: 980px; margin: 0 auto; padding: 0 16px 0; }
@@ -97,15 +102,12 @@
       background: rgba(255,255,255,.06);
       transform: translateY(-1px);
     }
-
-    /* Active jump link */
     .jump a.active{
       border-color: rgba(255,255,255,.55);
       background: rgba(255,255,255,.10);
       box-shadow: 0 14px 40px rgba(0,0,0,.35);
     }
 
-    /* Transparent card */
     .card{
       margin-top: 16px;
       background: transparent;
@@ -197,9 +199,12 @@
         Fifty in Style
         <small>Programma • Gleneagles • 15–19 april 2026</small>
       </div>
+
+      <!-- ✅ NAV: nu ook Deelnemers -->
       <nav class="nav">
-        <a href="index.html">⏳ Countdown</a>
-        <a href="programma.pdf">📄 PDF</a>
+        <a class="navbtn" href="index.html">⏳ Countdown</a>
+        <a class="navbtn" href="deelnemers.html">👥 Deelnemers</a>
+        <a class="navbtn" href="programma.pdf">📄 PDF</a>
       </nav>
     </div>
   </div>
@@ -291,7 +296,7 @@
         <div class="mini">
           <h3>🌲 Niet-golfers</h3>
           <div class="timeline">
-            <div class="row"><div class="time">09:30</div><div class="item">🚶 Wandeling (±3u)</div></div>
+            <div class="row"><div class="time">AM</div><div class="item">🚶 Wandeling (±3u)</div></div>
           </div>
         </div>
       </div>
@@ -299,6 +304,15 @@
       <div class="badges">
         <span class="badge">🧖/🛍️ Namiddag — Spa</span>
       </div>
+
+      <!-- ✅ EXTRA ACTIVITEIT -->
+      <div class="timeline" style="margin-top: 12px;">
+        <div class="row">
+          <div class="time">15:30</div>
+          <div class="item">🎯 Clay Pigeon Shooting</div>
+        </div>
+      </div>
+
       <div class="badges">
         <span class="badge">🍽️ 19:30 — Diner: The Dormy</span>
       </div>
@@ -325,36 +339,29 @@
       navLinks.forEach(a => a.classList.toggle("active", a.dataset.target === id));
     }
 
-    // Default active on load (based on hash or first)
     if (location.hash && document.getElementById(location.hash.slice(1))) {
       setActive(location.hash.slice(1));
     } else {
       setActive(daySections[0]?.id || "wo");
     }
 
-    // Update active link while scrolling
     const observer = new IntersectionObserver((entries) => {
-      // Pick the most visible entry that is intersecting
       const visible = entries
         .filter(e => e.isIntersecting)
         .sort((a,b) => (b.intersectionRatio - a.intersectionRatio))[0];
 
       if (visible?.target?.id) setActive(visible.target.id);
     }, {
-      root: null,
       threshold: [0.25, 0.35, 0.5, 0.65],
-      // bring focus a bit earlier/later (nice UX)
       rootMargin: "-20% 0px -55% 0px"
     });
 
     daySections.forEach(sec => observer.observe(sec));
 
-    // Also update on click (instant feedback)
     navLinks.forEach(a => {
       a.addEventListener("click", () => setActive(a.dataset.target));
     });
 
-    // Update on hashchange (e.g. back/forward)
     window.addEventListener("hashchange", () => {
       const id = location.hash.slice(1);
       if (id) setActive(id);
